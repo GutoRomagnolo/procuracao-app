@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class ViewLogin extends StatelessWidget {
-  const ViewLogin({super.key});
+class ViewRegister extends StatelessWidget {
+  const ViewRegister({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,12 +15,25 @@ class ViewLogin extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Text(
-                  "Seja bem-vindo ao Bicho Amigo!",
+                  "Estamos muito felizes por você querer se juntar a comunidade Bicho Amigo!",
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
                   ),
                   textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 20),
+                TextFormField(
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color.fromRGBO(97, 164, 80, 1),
+                      ),
+                    ),
+                    labelText: "Digite o seu nome",
+                    filled: true,
+                    fillColor: Colors.white,
+                  ),
                 ),
                 const SizedBox(height: 20),
                 TextFormField(
@@ -60,23 +73,7 @@ class ViewLogin extends StatelessWidget {
                         const Color.fromRGBO(97, 164, 80, 1),
                       ),
                     ),
-                    child: const Text("Fazer login"),
-                  ),
-                ),
-                const SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: () => {},
-                  style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all(Colors.transparent),
-                      shadowColor:
-                          MaterialStateProperty.all(Colors.transparent)),
-                  child: const Text(
-                    "Quero me cadastrar",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Color.fromRGBO(244, 142, 53, 1),
-                    ),
+                    child: const Text("Finalizar cadastro"),
                   ),
                 ),
               ],
