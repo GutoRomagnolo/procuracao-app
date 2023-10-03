@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:procuracaoapp/views/view_login.dart';
+import 'package:procuracaoapp/views/view_password.dart';
 import 'package:procuracaoapp/views/view_register.dart';
 import 'package:procuracaoapp/views/view_main_menu.dart';
+import 'package:procuracaoapp/views/view_user.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: const ViewMainMenu(),
+      home: const ViewPassword(),
     );
   }
 }

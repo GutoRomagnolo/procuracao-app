@@ -6,10 +6,6 @@ class ViewMainMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('ProcuraCão'),
-        backgroundColor: Colors.white, // Cor do appbar
-      ),
       body: Container(
         color: Colors.white, // Cor do corpo da tela
         child: Center(
@@ -17,7 +13,7 @@ class ViewMainMenu extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(
-                'procuracao-logo.png', // Certifique-se de colocar a imagem na pasta "assets"
+                "assets/procuracao-logo.png", // Certifique-se de colocar a imagem na pasta "assets"
                 height: 150,
                 width: 150,
               ),
