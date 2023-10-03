@@ -15,9 +15,17 @@ class ViewRegister extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Text(
-                  "Estamos muito felizes por você querer se juntar a comunidade Bicho Amigo!",
+                  "Bem-vindo(a) a comunidade ProcuraCão!",
                   style: TextStyle(
                     fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                const Text(
+                  "Encontre e divulgue pets perdidos a qualquer momento",
+                  style: TextStyle(
+                    fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
                   textAlign: TextAlign.center,
