@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:procuracaoapp/views/view_login.dart';
 import 'package:procuracaoapp/views/view_password.dart';
 import 'package:procuracaoapp/views/view_register.dart';
-import 'package:procuracaoapp/views/view_main_menu.dart';
+import 'package:procuracaoapp/views/view_login.dart';
 import 'package:procuracaoapp/views/view_user.dart';
 
 void main() {
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: const Color.fromARGB(255, 76, 212, 103)
       ),
-      home: const ViewMainMenu(),
+      home: const ViewUser(),
     );
   }
 }

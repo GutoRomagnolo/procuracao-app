@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ViewRegister extends StatelessWidget {
   const ViewRegister({super.key});
@@ -14,19 +15,22 @@ class ViewRegister extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text(
-                  "Bem-vindo(a) a comunidade ProcuraCão!",
+                Text(
+                  "Cadastre-se em nossa comunidade!",
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
+                    fontFamily: GoogleFonts.quicksand().fontFamily,
                   ),
                   textAlign: TextAlign.center,
                 ),
-                const Text(
+                const SizedBox(height: 20),
+                Text(
                   "Encontre e divulgue pets perdidos a qualquer momento",
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
+                    fontFamily: GoogleFonts.quicksand().fontFamily,
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -38,7 +42,7 @@ class ViewRegister extends StatelessWidget {
                         color: Color.fromRGBO(97, 164, 80, 1),
                       ),
                     ),
-                    labelText: "Digite o seu nome",
+                    labelText: "Digite seu nome",
                     filled: true,
                     fillColor: Colors.white,
                   ),
@@ -51,7 +55,7 @@ class ViewRegister extends StatelessWidget {
                         color: Color.fromRGBO(97, 164, 80, 1),
                       ),
                     ),
-                    hintText: "user@domain.br",
+                    hintText: "exemplo@hotmail.com",
                     labelText: "Digite seu e-mail",
                     filled: true,
                     fillColor: Colors.white,
@@ -72,16 +76,29 @@ class ViewRegister extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 20),
+                TextFormField(
+                  obscureText: true,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color.fromRGBO(97, 164, 80, 1),
+                      ),
+                    ),
+                    labelText: "Digite novamente sua senha",
+                    filled: true,
+                    fillColor: Colors.white,
+                  ),
+                ),
+                const SizedBox(height: 20),
                 SizedBox(
                   width: MediaQuery.of(context).size.width,
+                  height: 40,
                   child: ElevatedButton(
                     onPressed: () => {},
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(
-                        const Color.fromRGBO(97, 164, 80, 1),
-                      ),
-                    ),
-                    child: const Text("Finalizar cadastro"),
+                        backgroundColor: MaterialStateProperty.all(
+                            Theme.of(context).primaryColor)),
+                    child: const Text("CADASTRAR"),
                   ),
                 ),
               ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ViewPassword extends StatelessWidget {
   const ViewPassword({super.key});
@@ -17,11 +18,12 @@ class ViewPassword extends StatelessWidget {
           child: Form(
             child: Column(
               children: [
-                const Text(
+                Text(
                   "Alterar senha de acesso",
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
+                    fontFamily: GoogleFonts.quicksand().fontFamily
                   ),
                 ),
                 const SizedBox(height: 20),
@@ -55,14 +57,18 @@ class ViewPassword extends StatelessWidget {
                 const SizedBox(height: 20),
                 SizedBox(
                   width: MediaQuery.of(context).size.width,
+                  height: 40,
                   child: ElevatedButton(
                     onPressed: () => {},
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(
-                        const Color.fromRGBO(97, 164, 80, 1),
+                        Theme.of(context).primaryColor
                       ),
                     ),
-                    child: const Text("Alterar senha"),
+                    child: const Text(
+                      "SALVAR",
+                      style: TextStyle(fontWeight: FontWeight.bold)
+                    ),
                   ),
                 ),
               ],
