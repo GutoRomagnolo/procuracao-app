@@ -18,16 +18,14 @@ class ViewMainMenu extends StatelessWidget {
                 height: 150,
                 width: 150,
               ),
-              const SizedBox(height: 20),
               Text(
-                'Bem-vindo ao ProcuraCão',
+                'Bem-vindo(a) ao ProcuraCão!',
                 style: TextStyle(
-                  fontSize: 24,
+                  fontSize: 22,
                   fontFamily: GoogleFonts.quicksand().fontFamily,
                   color: Colors.black,
                 ),
               ),
-              const SizedBox(height: 10),
               Container(
                 color: const Color.fromRGBO(240, 241, 223, 1),
                 padding: const EdgeInsets.all(40.0),
@@ -35,7 +33,6 @@ class ViewMainMenu extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const SizedBox(height: 20),
                       TextFormField(
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(
@@ -66,11 +63,14 @@ class ViewMainMenu extends StatelessWidget {
                       const SizedBox(height: 20),
                       SizedBox(
                         width: MediaQuery.of(context).size.width,
+                        height: 40,
                         child: ElevatedButton(
                           onPressed: () => {},
                           style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all(
-                                  Theme.of(context).primaryColor)),
+                            backgroundColor: MaterialStateProperty.all(
+                              Theme.of(context).primaryColor
+                            )
+                          ),
                           child: const Text("Fazer login"),
                         ),
                       ),
@@ -78,15 +78,17 @@ class ViewMainMenu extends StatelessWidget {
                       ElevatedButton(
                         onPressed: () => {},
                         style: ButtonStyle(
-                            backgroundColor:
-                                MaterialStateProperty.all(Colors.transparent),
-                            shadowColor:
-                                MaterialStateProperty.all(Colors.transparent)),
+                          backgroundColor:
+                            MaterialStateProperty.all(Colors.transparent),
+                          shadowColor:
+                            MaterialStateProperty.all(Colors.transparent),
+                        ),
                         child: const Text(
                           "Quero me cadastrar",
                           style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Color.fromARGB(255, 39, 180, 231)),
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromARGB(255, 39, 180, 231)
+                          ),
                         ),
                       ),
                     ],
