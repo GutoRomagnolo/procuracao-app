@@ -94,10 +94,18 @@ class ViewRegister extends StatelessWidget {
                   width: MediaQuery.of(context).size.width,
                   height: 40,
                   child: ElevatedButton(
-                    onPressed: () => {},
+                    onPressed: () => {
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                          backgroundColor: Colors.green,
+                          duration: Duration(seconds: 5),
+                          content: Text("Cadastrado com sucesso!")
+                        )
+                      )
+                    },
                     style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(
-                            Theme.of(context).primaryColor)),
+                      backgroundColor: MaterialStateProperty.all(
+                        Theme.of(context).primaryColor)
+                      ),
                     child: const Text("CADASTRAR"),
                   ),
                 ),

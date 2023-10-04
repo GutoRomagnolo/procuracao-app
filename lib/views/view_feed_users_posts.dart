@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ViewFeedUsersPosts extends StatelessWidget {
   const ViewFeedUsersPosts({super.key});
@@ -8,9 +9,15 @@ class ViewFeedUsersPosts extends StatelessWidget {
     return Container(
       color: const Color.fromRGBO(240, 241, 223, 1),
       padding: const EdgeInsets.all(40.0),
-      child: const Column(
+      child: Column(
         children: [
-          Text("1"),
+          Text(
+            "Postagens",
+            style: TextStyle(
+              fontSize: 18,
+              fontFamily: GoogleFonts.quicksand().fontFamily
+            )
+          )
         ],
       ),
     );

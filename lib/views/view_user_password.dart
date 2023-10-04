@@ -90,7 +90,14 @@ class ViewUserPassword extends StatelessWidget {
                   width: MediaQuery.of(context).size.width,
                   height: 40,
                   child: ElevatedButton(
-                    onPressed: () => {},
+                    onPressed: () => {
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                          backgroundColor: Colors.green,
+                          duration: Duration(seconds: 5),
+                          content: Text("Senha alterada com sucesso!")
+                        )
+                      )
+                    },
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(
                           Theme.of(context).primaryColor),

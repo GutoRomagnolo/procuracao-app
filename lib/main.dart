@@ -20,7 +20,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: const Color.fromARGB(255, 76, 212, 103),
       ),
-      home: const ViewFeed(),
+      home: const Scaffold(
+        body:ViewUserPassword()
+      )
     );
   }
 }

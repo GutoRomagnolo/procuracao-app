@@ -4,8 +4,22 @@ import 'package:procuracaoapp/views/view_feed_my_posts.dart';
 import 'package:procuracaoapp/views/view_feed_notifications.dart';
 import 'package:procuracaoapp/views/view_feed_users_posts.dart';
 
-class ViewFeed extends StatelessWidget {
+class ViewFeed extends StatefulWidget {
   const ViewFeed({super.key});
+
+  @override
+  State<ViewFeed> createState() =>
+    _ViewFeedState();
+}
+
+class _ViewFeedState extends State<ViewFeed> {
+  int _selectedBottomTabIndex = 0;
+
+  void _bottomBarItemTapped(int index) {
+    setState(() {
+      _selectedBottomTabIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,16 +69,16 @@ class ViewFeed extends StatelessWidget {
             ],
           ),
         ),
-        body: const IndexedStack(
-          index: 0,
-          children: [
+        body: IndexedStack(
+          index: _selectedBottomTabIndex,
+          children: const [
             ViewFeedUsersPosts(),
             ViewFeedMyPosts(),
-            ViewFeedNotifications(),
-          ],
+            ViewFeedNotifications()
+          ]
         ),
         bottomNavigationBar: BottomNavigationBar(
-          items: const [
+          items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(Icons.feed),
               label: "Feed",
@@ -78,6 +92,9 @@ class ViewFeed extends StatelessWidget {
               label: "Notificações",
             ),
           ],
+          currentIndex: _selectedBottomTabIndex,
+          selectedItemColor: Theme.of(context).primaryColor,
+          onTap: _bottomBarItemTapped
         ),
       ),
     );

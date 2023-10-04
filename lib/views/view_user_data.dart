@@ -97,7 +97,12 @@ class ViewUserData extends StatelessWidget {
                   width: MediaQuery.of(context).size.width,
                   height: 40,
                   child: ElevatedButton(
-                    onPressed: () => {},
+                    onPressed: () => {
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                          backgroundColor: Colors.green,
+                          duration: Duration(seconds: 5),
+                          content: Text("Cadastro alterado com sucesso!")))
+                    },
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(
                           Theme.of(context).primaryColor),
