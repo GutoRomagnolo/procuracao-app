@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:procuracaoapp/views/view_feed.dart';
 
 class ViewRegister extends StatelessWidget {
   const ViewRegister({super.key});
@@ -95,17 +96,23 @@ class ViewRegister extends StatelessWidget {
                   height: 40,
                   child: ElevatedButton(
                     onPressed: () => {
-                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                          backgroundColor: Colors.green,
-                          duration: Duration(seconds: 5),
-                          content: Text("Cadastrado com sucesso!")
-                        )
+                      // ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      //     backgroundColor: Colors.green,
+                      //     duration: Duration(seconds: 5),
+                      //     content: Text("Cadastrado com sucesso!")
+                      //   )
+                      // )
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const ViewFeed(),
+                        ),
                       )
                     },
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(
-                        Theme.of(context).primaryColor)
-                      ),
+                          Theme.of(context).primaryColor),
+                    ),
                     child: const Text("CADASTRAR"),
                   ),
                 ),

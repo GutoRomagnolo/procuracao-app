@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:procuracaoapp/views/view_feed.dart';
+import 'package:procuracaoapp/views/view_login.dart';
+import 'package:procuracaoapp/views/view_user_data.dart';
 
 class ViewUserPassword extends StatelessWidget {
   const ViewUserPassword({super.key});
@@ -20,8 +23,8 @@ class ViewUserPassword extends StatelessWidget {
         ),
         drawer: Drawer(
           child: ListView(
-            children: const [
-              DrawerHeader(
+            children: [
+              const DrawerHeader(
                 decoration: BoxDecoration(
                   color: Color.fromRGBO(39, 180, 231, 0.5),
                 ),
@@ -31,23 +34,52 @@ class ViewUserPassword extends StatelessWidget {
                 ),
               ),
               ListTile(
-                leading: Icon(Icons.feed),
-                title: Text("Feed"),
-                // onTap: () => {},
+                leading: const Icon(Icons.feed),
+                title: const Text("Feed"),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ViewFeed(),
+                    ),
+                  );
+                },
               ),
               ListTile(
-                leading: Icon(Icons.person),
-                title: Text("Dados cadastrais"),
-                // onTap: () => {},
+                leading: const Icon(Icons.person),
+                title: const Text("Dados cadastrais"),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ViewUserData(),
+                    ),
+                  );
+                },
               ),
               ListTile(
-                leading: Icon(Icons.password),
-                title: Text("Alterar senha"),
-                // onTap: () => {},
+                leading: const Icon(Icons.password),
+                title: const Text("Alterar senha"),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ViewUserPassword(),
+                    ),
+                  );
+                },
               ),
               ListTile(
-                leading: Icon(Icons.exit_to_app_sharp),
-                title: Text("Sair do aplicativo"),
+                leading: const Icon(Icons.exit_to_app_sharp),
+                title: const Text("Sair do aplicativo"),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ViewLogin(),
+                    ),
+                  );
+                },
               ),
             ],
           ),
@@ -94,9 +126,7 @@ class ViewUserPassword extends StatelessWidget {
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                           backgroundColor: Colors.green,
                           duration: Duration(seconds: 5),
-                          content: Text("Senha alterada com sucesso!")
-                        )
-                      )
+                          content: Text("Senha alterada com sucesso!")))
                     },
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(

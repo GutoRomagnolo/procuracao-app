@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:procuracaoapp/views/view_feed.dart';
+import 'package:procuracaoapp/views/view_register.dart';
 
 class ViewLogin extends StatelessWidget {
   const ViewLogin({super.key});
@@ -65,30 +67,42 @@ class ViewLogin extends StatelessWidget {
                         width: MediaQuery.of(context).size.width,
                         height: 40,
                         child: ElevatedButton(
-                          onPressed: () => {},
+                          onPressed: () => {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const ViewFeed(),
+                              ),
+                            )
+                          },
                           style: ButtonStyle(
                             backgroundColor: MaterialStateProperty.all(
-                              Theme.of(context).primaryColor
-                            )
+                                Theme.of(context).primaryColor),
                           ),
                           child: const Text("Fazer login"),
                         ),
                       ),
                       const SizedBox(height: 20),
                       ElevatedButton(
-                        onPressed: () => {},
+                        onPressed: () => {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const ViewRegister(),
+                            ),
+                          )
+                        },
                         style: ButtonStyle(
                           backgroundColor:
-                            MaterialStateProperty.all(Colors.transparent),
+                              MaterialStateProperty.all(Colors.transparent),
                           shadowColor:
-                            MaterialStateProperty.all(Colors.transparent),
+                              MaterialStateProperty.all(Colors.transparent),
                         ),
                         child: const Text(
                           "Quero me cadastrar",
                           style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Color.fromARGB(255, 39, 180, 231)
-                          ),
+                              fontWeight: FontWeight.bold,
+                              color: Color.fromARGB(255, 39, 180, 231)),
                         ),
                       ),
                     ],
