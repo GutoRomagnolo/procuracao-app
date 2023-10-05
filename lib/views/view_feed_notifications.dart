@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class ViewFeedNotifications extends StatelessWidget {
   const ViewFeedNotifications({super.key});
@@ -8,16 +7,26 @@ class ViewFeedNotifications extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: const Color.fromRGBO(240, 241, 223, 1),
-      padding: const EdgeInsets.all(40.0),
-      child: Column(
+      padding: const EdgeInsets.all(20.0),
+      child: const Column(
         children: [
-          Text(
-            "Notificações",
-            style: TextStyle(
-              fontSize: 18,
-              fontFamily: GoogleFonts.quicksand().fontFamily
-            )
-          )
+          ListTile(
+            title: Text(
+              "Gata Princesa",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            subtitle: Text(
+                "Vi ela próximo a área verde do CECAP, ela é filhote ainda?."),
+          ),
+          Divider(),
+          ListTile(
+            title: Text(
+              "Gato Frajolo",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            subtitle: Text("Vi esses dias perto do campo de futebol."),
+          ),
+          Divider(),
         ],
       ),
     );

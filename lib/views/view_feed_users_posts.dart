@@ -10,15 +10,7 @@ class ViewFeedUsersPosts extends StatelessWidget {
       color: const Color.fromRGBO(240, 241, 223, 1),
       padding: const EdgeInsets.all(40.0),
       child: Column(
-        children: [
-          Text(
-            "Postagens",
-            style: TextStyle(
-              fontSize: 18,
-              fontFamily: GoogleFonts.quicksand().fontFamily
-            )
-          )
-        ],
+        children: [],
       ),
     );
   }

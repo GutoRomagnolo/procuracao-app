@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:procuracaoapp/views/view_feed.dart';
+import 'package:procuracaoapp/views/view_feed_post.dart';
 import 'package:procuracaoapp/views/view_login.dart';
 import 'package:procuracaoapp/views/view_user_password.dart';
 import 'package:procuracaoapp/views/view_register.dart';
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
           primaryColor: const Color.fromARGB(255, 76, 212, 103),
         ),
         home: const Scaffold(
-          body: ViewLogin(),
+          body: ViewFeedPost(),
         ));
   }
 }

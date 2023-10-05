@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:procuracaoapp/views/view_feed_my_posts.dart';
 import 'package:procuracaoapp/views/view_feed_notifications.dart';
+import 'package:procuracaoapp/views/view_feed_post.dart';
 import 'package:procuracaoapp/views/view_feed_users_posts.dart';
 import 'package:procuracaoapp/views/view_login.dart';
 import 'package:procuracaoapp/views/view_user_data.dart';
@@ -106,6 +107,20 @@ class _ViewFeedState extends State<ViewFeed> {
           ViewFeedMyPosts(),
           ViewFeedNotifications()
         ],
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        backgroundColor: Colors.green,
+        foregroundColor: Colors.black,
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const ViewFeedPost(),
+            ),
+          );
+        },
+        icon: Icon(Icons.add),
+        label: Text("Nova postagem"),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
