@@ -8,15 +8,37 @@ class ViewFeedMyPosts extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: const Color.fromRGBO(240, 241, 223, 1),
-      padding: const EdgeInsets.all(40.0),
-      child: Column(
+      padding: const EdgeInsets.all(20.0),
+      child: ListView(
+        scrollDirection: Axis.vertical,
         children: [
-          Text(
-            "Minhas postagens",
-            style: TextStyle(
-              fontSize: 18,
-              fontFamily: GoogleFonts.quicksand().fontFamily
-            )
+          Card(
+            clipBehavior: Clip.antiAlias,
+            child: Column(
+              children: [
+                const ListTile(
+                  title: Text('Maiuri'),
+                ),
+                const Text('Fêmea, 3 anos, bastante assustada, porém mansa.'),
+                const SizedBox(height: 20),
+                Image.asset('../assets/maiuri.jpg'),
+                const SizedBox(height: 20),
+              ],
+            ),
+          ),
+          Card(
+            clipBehavior: Clip.antiAlias,
+            child: Column(
+              children: [
+                const ListTile(
+                  title: Text('Frajole'),
+                ),
+                const Text('Fêmea, 1 ano, bastante assustada, porém mansa.'),
+                const SizedBox(height: 20),
+                Image.asset('../assets/princesa.jpg'),
+                const SizedBox(height: 20),
+              ],
+            ),
           ),
         ],
       ),
