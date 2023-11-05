@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "466960844157",
+    "project_id": "procuracao-app",
+    "storage_bucket": "procuracao-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:466960844157:android:c6b5717ab6a0e615177814",
+        "android_client_info": {
+          "package_name": "com.example.procuracaoapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAmrBvI36YenJho7hW2WoHB0QF-4n3TUA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
