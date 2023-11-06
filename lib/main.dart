@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:procuracaoapp/views/view_login.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:procuracaoapp/bloc/auth_bloc.dart';
+import 'package:procuracaoapp/views/view_introduce.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
@@ -21,8 +23,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: const Color.fromARGB(255, 76, 212, 103),
       ),
-      home: const Scaffold(
-        body: ViewLogin(),
+      home: MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (context) => AuthBloc()),
+        ],
+        child: const Scaffold(
+          body: ViewIntroduction(),
+        ),
       ),
     );
   }
