@@ -1,3 +1,3 @@
-class ModelShareLocation {
+class ShareLocationModel {
   bool shareLocation = false;
 }

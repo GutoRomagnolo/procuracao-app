@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:procuracaoapp/components/post_component.dart';
+import 'package:procuracaoapp/mock.dart';
 
 class ViewFeedMyPosts extends StatelessWidget {
   const ViewFeedMyPosts({super.key});
@@ -11,36 +12,7 @@ class ViewFeedMyPosts extends StatelessWidget {
       padding: const EdgeInsets.all(20.0),
       child: ListView(
         scrollDirection: Axis.vertical,
-        children: [
-          Card(
-            clipBehavior: Clip.antiAlias,
-            child: Column(
-              children: [
-                const ListTile(
-                  title: Text('Maiuri'),
-                ),
-                const Text('Fêmea, 3 anos, bastante assustada, porém mansa.'),
-                const SizedBox(height: 20),
-                Image.asset('./assets/maiuri.jpg'),
-                const SizedBox(height: 20),
-              ],
-            ),
-          ),
-          Card(
-            clipBehavior: Clip.antiAlias,
-            child: Column(
-              children: [
-                const ListTile(
-                  title: Text('Frajole'),
-                ),
-                const Text('Fêmea, 1 ano, bastante assustada, porém mansa.'),
-                const SizedBox(height: 20),
-                Image.asset('./assets/princesa.jpg'),
-                const SizedBox(height: 20),
-              ],
-            ),
-          ),
-        ],
+        children: postsMock.map((e) => PostComponent(postModel: e)).toList(),
       ),
     );
   }
