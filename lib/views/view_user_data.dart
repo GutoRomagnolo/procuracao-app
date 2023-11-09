@@ -25,13 +25,6 @@ class ViewUserData extends StatelessWidget {
           child: Form(
             child: Column(
               children: [
-                // Text(
-                //   "Alterar dados cadastrais",
-                //   style: TextStyle(
-                //       fontSize: 24,
-                //       fontWeight: FontWeight.bold,
-                //       fontFamily: GoogleFonts.quicksand().fontFamily),
-                // ),
                 const SizedBox(height: 20),
                 TextFormField(
                   decoration: const InputDecoration(

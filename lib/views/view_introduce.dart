@@ -17,7 +17,7 @@ class ViewIntroduction extends StatelessWidget {
             children: [
               Center(
                 child: Text(
-                  'O propósito deste aplicativo é para a localização e sinalização de animais domésticos que foram perdidos, a fim de facilitar a procura dos pets de uma maneira mais rápida e direta, evitando assim entrar em grupos de redes sociais que dependem de uma longa busca por feed.\n\nOs usuários poderão cadastrar um alerta de animal perdido ou animal encontrado, com a localização no mapa e endereço, informações do animal e informações para contato.\n\n\Clique no em "Quero fazer parte" e entre para a nossa comunidade!',
+                  'O propósito deste aplicativo é para a localização e sinalização de animais domésticos que foram perdidos, a fim de facilitar a procura dos pets de uma maneira mais rápida e direta, evitando assim entrar em grupos de redes sociais que dependem de uma longa busca por feed.\n\nOs usuários poderão cadastrar um alerta de animal perdido ou animal encontrado, com a localização no mapa e endereço, informações do animal e informações para contato.\n\nClique no em "Quero fazer parte" e entre para a nossa comunidade!',
                   style: TextStyle(
                     fontSize: 16,
                     fontFamily: GoogleFonts.quicksand().fontFamily,

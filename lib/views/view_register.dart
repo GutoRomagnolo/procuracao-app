@@ -96,12 +96,6 @@ class ViewRegister extends StatelessWidget {
                   height: 40,
                   child: ElevatedButton(
                     onPressed: () => {
-                      // ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                      //     backgroundColor: Colors.green,
-                      //     duration: Duration(seconds: 5),
-                      //     content: Text("Cadastrado com sucesso!")
-                      //   )
-                      // )
                       Navigator.push(
                         context,
                         MaterialPageRoute(

@@ -54,8 +54,8 @@ class _ViewFeedState extends State<ViewFeed> {
             ),
           );
         },
-        icon: Icon(Icons.add),
-        label: Text("Nova postagem"),
+        icon: const Icon(Icons.add),
+        label: const Text("Nova postagem"),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
