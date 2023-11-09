@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:procuracaoapp/bloc/auth_bloc.dart';
+import 'package:procuracaoapp/router.dart';
 import 'package:procuracaoapp/views/view_introduce.dart';
 import 'firebase_options.dart';
 
@@ -13,8 +14,15 @@ Future<void> main() async {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  final AppRouter _appRouter = AppRouter();
 
   @override
   Widget build(BuildContext context) {
@@ -23,14 +31,21 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: const Color.fromARGB(255, 76, 212, 103),
       ),
-      home: MultiBlocProvider(
-        providers: [
-          BlocProvider(create: (context) => AuthBloc()),
-        ],
-        child: const Scaffold(
-          body: ViewIntroduction(),
-        ),
-      ),
+      // home: MultiBlocProvider(
+      //   providers: [
+      //     BlocProvider(create: (context) => AuthBloc()),
+      //   ],
+      //   child: const Scaffold(
+      //     body: ViewIntroduction(),
+      //   ),
+      // ),
+      onGenerateRoute: _appRouter.onGenerateRoute,
     );
+  }
+
+  @override
+  void dispose() {
+    _appRouter.dispose();
+    super.dispose();
   }
 }
