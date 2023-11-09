@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:procuracaoapp/views/view_feed.dart';
 import 'package:procuracaoapp/views/view_introduce.dart';
+import 'package:procuracaoapp/views/view_login.dart';
+import 'package:procuracaoapp/views/view_register.dart';
 // import 'package:flutter_bloc/flutter_bloc.dart';
 // import 'package:j_web_service_frontend/bloc/manage_bloc.dart';
 // import 'package:j_web_service_frontend/bloc/monitor_bloc.dart';
@@ -19,7 +21,10 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const ViewFeed());
       case "/introduction":
         return MaterialPageRoute(builder: (_) => const ViewIntroduction());
-
+      case "/login":
+        return MaterialPageRoute(builder: (_) => const ViewLogin());
+      case "/register":
+        return MaterialPageRoute(builder: (_) => const ViewRegister());
       // case "/":
       //   return MaterialPageRoute(builder: (_) => const HomeScreen());
       // case "/add":

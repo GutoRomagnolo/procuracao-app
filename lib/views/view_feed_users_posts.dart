@@ -9,7 +9,7 @@ class ViewFeedUsersPosts extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: const Color.fromRGBO(240, 241, 223, 1),
-      padding: const EdgeInsets.all(40.0),
+      padding: const EdgeInsets.all(20.0),
       child: ListView(
         scrollDirection: Axis.vertical,
         children: postsMock.map((e) => PostComponent(postModel: e)).toList(),
