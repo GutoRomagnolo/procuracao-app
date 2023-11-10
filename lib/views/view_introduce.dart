@@ -45,7 +45,7 @@ class ViewIntroduction extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
-                    color: Color.fromARGB(255, 39, 180, 231),
+                    color: Color.fromRGBO(39, 180, 231, 1),
                   ),
                 ),
               ),

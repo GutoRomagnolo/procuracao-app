@@ -3,7 +3,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:procuracaoapp/bloc/auth_bloc.dart';
 import 'package:procuracaoapp/router.dart';
-import 'package:procuracaoapp/views/view_introduce.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
@@ -29,7 +28,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primaryColor: const Color.fromARGB(255, 76, 212, 103),
+        primaryColor: const Color.fromRGBO(76, 212, 103, 1),
       ),
       // home: MultiBlocProvider(
       //   providers: [

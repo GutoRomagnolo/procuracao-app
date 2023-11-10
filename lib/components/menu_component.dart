@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:procuracaoapp/bloc/auth_bloc.dart';
 import 'package:procuracaoapp/views/view_feed.dart';
 import 'package:procuracaoapp/views/view_login.dart';
 import 'package:procuracaoapp/views/view_user_data.dart';
@@ -68,6 +70,9 @@ class _MenuComponentState extends State<MenuComponent> {
             leading: const Icon(Icons.exit_to_app_sharp),
             title: const Text("Sair do aplicativo"),
             onTap: () {
+              // if (state is Authenticated) {
+              BlocProvider.of<AuthBloc>(widget.parentContext).add(Logout());
+              // }
               Navigator.push(
                 context,
                 MaterialPageRoute(

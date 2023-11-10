@@ -18,7 +18,7 @@ class AppRouter {
   Route onGenerateRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
       case "/":
-        return MaterialPageRoute(builder: (_) => const ViewFeed());
+        return MaterialPageRoute(builder: (_) => const ViewLogin()); // ViewFeed
       case "/introduction":
         return MaterialPageRoute(builder: (_) => const ViewIntroduction());
       case "/login":
