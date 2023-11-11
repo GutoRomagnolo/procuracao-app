@@ -32,7 +32,12 @@ class AppRouter {
       case "/login":
         return MaterialPageRoute(builder: (_) => const ViewLogin());
       case "/register":
-        return MaterialPageRoute(builder: (_) => const ViewRegister());
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider.value(
+            value: _authBloc,
+            child: const ViewRegister(),
+          ),
+        );
       // case "/":
       //   return MaterialPageRoute(builder: (_) => const HomeScreen());
       // case "/add":

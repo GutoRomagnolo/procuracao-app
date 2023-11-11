@@ -23,13 +23,14 @@ class _ViewLoginState extends State<ViewLogin> {
       listener: (context, state) {
         if (state is AuthError) {
           showDialog(
-              context: context,
-              builder: (context) {
-                return AlertDialog(
-                  title: const Text("Impossível Logar"),
-                  content: Text(state.message),
-                );
-              });
+            context: context,
+            builder: (context) {
+              return AlertDialog(
+                title: const Text("Não foi possível realizar o login"),
+                content: Text(state.message),
+              );
+            },
+          );
         }
       },
       builder: (context, state) {
