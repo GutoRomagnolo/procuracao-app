@@ -14,10 +14,10 @@ class ViewRegister extends StatefulWidget {
 class _ViewRegisterState extends State<ViewRegister> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  String name = "";
-  String username = "";
-  String password = "";
-  String passwordConfirmation = "";
+  String name = '';
+  String username = '';
+  String password = '';
+  String passwordConfirmation = '';
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class _ViewRegisterState extends State<ViewRegister> {
             builder: (context) {
               return AlertDialog(
                 title:
-                    const Text("Não foi possível realizar realizar o cadastro"),
+                    const Text('Não foi possível realizar realizar o cadastro'),
                 content: Text(state.message),
               );
             },
@@ -47,7 +47,7 @@ class _ViewRegisterState extends State<ViewRegister> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "Cadastre-se em nossa comunidade!",
+                    'Cadastre-se em nossa comunidade!',
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
@@ -57,7 +57,7 @@ class _ViewRegisterState extends State<ViewRegister> {
                   ),
                   const SizedBox(height: 20),
                   Text(
-                    "Encontre e divulgue pets perdidos a qualquer momento",
+                    'Encontre e divulgue pets perdidos a qualquer momento',
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
@@ -70,13 +70,13 @@ class _ViewRegisterState extends State<ViewRegister> {
                     validator: (String? inValue) {
                       if (inValue != null) {
                         if (inValue.isEmpty) {
-                          return "Insira um nome de usuário";
+                          return 'Insira um nome de usuário';
                         }
                       }
                       return null;
                     },
                     onSaved: (String? inValue) {
-                      name = inValue ?? "";
+                      name = inValue ?? '';
                     },
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(
@@ -84,7 +84,7 @@ class _ViewRegisterState extends State<ViewRegister> {
                           color: Color.fromRGBO(97, 164, 80, 1),
                         ),
                       ),
-                      labelText: "Digite seu nome",
+                      labelText: 'Digite seu nome',
                       filled: true,
                       fillColor: Colors.white,
                     ),
@@ -95,13 +95,13 @@ class _ViewRegisterState extends State<ViewRegister> {
                     validator: (String? inValue) {
                       if (inValue != null) {
                         if (inValue.isEmpty) {
-                          return "Insira um e-mail de usuário";
+                          return 'Insira um e-mail de usuário';
                         }
                       }
                       return null;
                     },
                     onSaved: (String? inValue) {
-                      username = inValue ?? "";
+                      username = inValue ?? '';
                     },
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(
@@ -109,8 +109,8 @@ class _ViewRegisterState extends State<ViewRegister> {
                           color: Color.fromRGBO(97, 164, 80, 1),
                         ),
                       ),
-                      hintText: "exemplo@hotmail.com",
-                      labelText: "Digite seu e-mail",
+                      hintText: 'exemplo@hotmail.com',
+                      labelText: 'Digite seu e-mail',
                       filled: true,
                       fillColor: Colors.white,
                     ),
@@ -121,13 +121,13 @@ class _ViewRegisterState extends State<ViewRegister> {
                     validator: (String? inValue) {
                       if (inValue != null) {
                         if (inValue.length < 8) {
-                          return "Mínimo de 8 caracteres";
+                          return 'Mínimo de 8 caracteres';
                         }
                       }
                       return null;
                     },
                     onChanged: (String? inValue) {
-                      password = inValue ?? "";
+                      password = inValue ?? '';
                     },
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(
@@ -135,7 +135,7 @@ class _ViewRegisterState extends State<ViewRegister> {
                           color: Color.fromRGBO(97, 164, 80, 1),
                         ),
                       ),
-                      labelText: "Digite sua senha",
+                      labelText: 'Digite sua senha',
                       filled: true,
                       fillColor: Colors.white,
                     ),
@@ -146,17 +146,17 @@ class _ViewRegisterState extends State<ViewRegister> {
                     validator: (String? inValue) {
                       if (inValue != null) {
                         if (inValue.length < 8) {
-                          return "Mínimo de 8 caracteres";
+                          return 'Mínimo de 8 caracteres';
                         }
 
                         if (inValue != password) {
-                          return "As senhas não coincidem";
+                          return 'As senhas não coincidem';
                         }
                       }
                       return null;
                     },
                     onChanged: (String? inValue) {
-                      passwordConfirmation = inValue ?? "";
+                      passwordConfirmation = inValue ?? '';
                     },
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(
@@ -164,7 +164,7 @@ class _ViewRegisterState extends State<ViewRegister> {
                           color: Color.fromRGBO(97, 164, 80, 1),
                         ),
                       ),
-                      labelText: "Digite novamente sua senha",
+                      labelText: 'Digite novamente sua senha',
                       filled: true,
                       fillColor: Colors.white,
                     ),
@@ -184,18 +184,32 @@ class _ViewRegisterState extends State<ViewRegister> {
                             ),
                           );
                         }
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //     builder: (context) => const ViewFeed(),
-                        //   ),
-                        // )
                       },
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all(
                             Theme.of(context).primaryColor),
                       ),
-                      child: const Text("CADASTRAR"),
+                      child: const Text('CADASTRAR'),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                      Navigator.pushNamed(context, '/login');
+                    },
+                    style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all(Colors.transparent),
+                      shadowColor:
+                          MaterialStateProperty.all(Colors.transparent),
+                    ),
+                    child: const Text(
+                      'JÁ SOU CADASTRADO',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Color.fromRGBO(39, 180, 231, 1),
+                      ),
                     ),
                   ),
                 ],

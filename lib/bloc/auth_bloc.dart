@@ -27,7 +27,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         await _authenticationService.createUserWithEmailAndPassword(
             event.username, event.password);
       } catch (e) {
-        emit(AuthError(message: "Não foi possível registrar: ${e.toString()}"));
+        emit(AuthError(message: 'Não foi possível registrar: ${e.toString()}'));
       }
     });
 
@@ -39,7 +39,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         emit(
           AuthError(
             message:
-                "Não foi possível acessar a conta de ${event.username}: ${e.toString()}",
+                'Não foi possível acessar a conta de ${event.username}: ${e.toString()}',
           ),
         );
       }
@@ -50,7 +50,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         await _authenticationService.signOut();
       } catch (e) {
         emit(AuthError(
-            message: "Não foi possível sair da conta: ${e.toString()}"));
+            message: 'Não foi possível sair da conta: ${e.toString()}'));
       }
     });
   }

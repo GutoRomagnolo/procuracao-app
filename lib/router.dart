@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:procuracaoapp/bloc/auth_bloc.dart';
 import 'package:procuracaoapp/views/view_feed.dart';
+import 'package:procuracaoapp/views/view_feed_post.dart';
 import 'package:procuracaoapp/views/view_introduce.dart';
 import 'package:procuracaoapp/views/view_login.dart';
 import 'package:procuracaoapp/views/view_register.dart';
@@ -20,37 +21,39 @@ class AppRouter {
   // final MonitorBloc _monitorBloc = MonitorBloc();
   Route onGenerateRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
-      case "/":
+      case '/':
+        return MaterialPageRoute(builder: (_) => const ViewFeed());
+      case '/introduction':
+        return MaterialPageRoute(builder: (_) => const ViewIntroduction());
+      case '/login':
         return MaterialPageRoute(
           builder: (_) => BlocProvider.value(
             value: _authBloc,
             child: const ViewLogin(),
           ),
-        ); // ViewFeed
-      case "/introduction":
-        return MaterialPageRoute(builder: (_) => const ViewIntroduction());
-      case "/login":
-        return MaterialPageRoute(builder: (_) => const ViewLogin());
-      case "/register":
+        );
+      case '/register':
         return MaterialPageRoute(
           builder: (_) => BlocProvider.value(
             value: _authBloc,
             child: const ViewRegister(),
           ),
         );
-      // case "/":
+      case '/new-post':
+        return MaterialPageRoute(builder: (_) => const ViewFeedPost());
+      // case '/':
       //   return MaterialPageRoute(builder: (_) => const HomeScreen());
-      // case "/add":
+      // case '/add':
       //   return MaterialPageRoute(
       //     builder: (_) => BlocProvider.value(
       //       value: _manageBloc,
       //       child: ScreenHeader(
-      //         title: "Add Note",
+      //         title: 'Add Note',
       //         child: AddNote(),
       //       ),
       //     ),
       //   );
-      // case "/list":
+      // case '/list':
       //   return MaterialPageRoute(
       //     builder: (_) => MultiBlocProvider(
       //       providers: [
@@ -58,13 +61,13 @@ class AppRouter {
       //         BlocProvider.value(value: _monitorBloc)
       //       ],
       //       child: ScreenHeader(
-      //         title: "List Note",
+      //         title: 'List Note',
       //         child: ListNote(),
       //       ),
       //     ),
       //   );
       default:
-        return MaterialPageRoute(builder: (_) => const Text("Erro"));
+        return MaterialPageRoute(builder: (_) => const Text('Erro'));
     }
   }
 

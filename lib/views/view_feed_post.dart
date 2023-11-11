@@ -40,7 +40,7 @@ class _ViewFeedPostState extends State<ViewFeedPost> {
                         color: Color.fromRGBO(97, 164, 80, 1),
                       ),
                     ),
-                    labelText: "Descreva brevemente a situação",
+                    labelText: 'Descreva brevemente a situação',
                     filled: true,
                     fillColor: Colors.white,
                   ),
@@ -53,7 +53,7 @@ class _ViewFeedPostState extends State<ViewFeedPost> {
                     MaterialButton(
                       color: Colors.blue,
                       child: const Text(
-                        "Escolha uma foto do animal",
+                        'Escolha uma foto do animal',
                         style: TextStyle(
                           color: Colors.white70,
                           fontWeight: FontWeight.bold,
@@ -76,7 +76,7 @@ class _ViewFeedPostState extends State<ViewFeedPost> {
                         }
                       },
                     ),
-                    const Text("Compartilhar localização"),
+                    const Text('Compartilhar localização'),
                   ],
                 ),
                 const SizedBox(height: 20),
@@ -89,7 +89,7 @@ class _ViewFeedPostState extends State<ViewFeedPost> {
                         const SnackBar(
                           backgroundColor: Colors.green,
                           duration: Duration(seconds: 5),
-                          content: Text("Postagem cadastrada com sucesso!"),
+                          content: Text('Postagem cadastrada com sucesso!'),
                         ),
                       ),
                     },
@@ -97,8 +97,10 @@ class _ViewFeedPostState extends State<ViewFeedPost> {
                       backgroundColor: MaterialStateProperty.all(
                           Theme.of(context).primaryColor),
                     ),
-                    child: const Text("SALVAR",
-                        style: TextStyle(fontWeight: FontWeight.bold)),
+                    child: const Text(
+                      'SALVAR',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
                   ),
                 ),
               ],

@@ -33,7 +33,7 @@ class ViewUserData extends StatelessWidget {
                         color: Color.fromRGBO(97, 164, 80, 1),
                       ),
                     ),
-                    labelText: "Digite o seu nome",
+                    labelText: 'Digite o seu nome',
                     filled: true,
                     fillColor: Colors.white,
                   ),
@@ -46,8 +46,8 @@ class ViewUserData extends StatelessWidget {
                         color: Color.fromRGBO(97, 164, 80, 1),
                       ),
                     ),
-                    hintText: "exemplo@hotmail.comW",
-                    labelText: "Digite seu e-mail",
+                    hintText: 'exemplo@hotmail.comW',
+                    labelText: 'Digite seu e-mail',
                     filled: true,
                     fillColor: Colors.white,
                   ),
@@ -58,17 +58,22 @@ class ViewUserData extends StatelessWidget {
                   height: 40,
                   child: ElevatedButton(
                     onPressed: () => {
-                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
                           backgroundColor: Colors.green,
                           duration: Duration(seconds: 5),
-                          content: Text("Cadastro alterado com sucesso!")))
+                          content: Text('Cadastro alterado com sucesso!'),
+                        ),
+                      )
                     },
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(
                           Theme.of(context).primaryColor),
                     ),
-                    child: const Text("SALVAR",
-                        style: TextStyle(fontWeight: FontWeight.bold)),
+                    child: const Text(
+                      'SALVAR',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
                   ),
                 ),
               ],

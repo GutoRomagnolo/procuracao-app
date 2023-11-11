@@ -61,7 +61,7 @@ class _MenuComponentState extends State<MenuComponent> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const ViewUserPassword(),
+                  builder: (context) => const ViewChangePassword(),
                 ),
               );
             },
@@ -71,14 +71,16 @@ class _MenuComponentState extends State<MenuComponent> {
             title: const Text("Sair do aplicativo"),
             onTap: () {
               // if (state is Authenticated) {
-              BlocProvider.of<AuthBloc>(widget.parentContext).add(Logout());
+              // BlocProvider.of<AuthBloc>(widget.parentContext).add(Logout());
               // }
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const ViewLogin(),
-                ),
-              );
+              // Navigator.pop(context);
+              Navigator.pushNamed(context, "/login");
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (context) => const ViewLogin(),
+              //   ),
+              // );
             },
           ),
         ],

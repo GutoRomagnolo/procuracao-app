@@ -47,29 +47,25 @@ class _ViewFeedState extends State<ViewFeed> {
         backgroundColor: Colors.green,
         foregroundColor: Colors.black,
         onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const ViewFeedPost(),
-            ),
-          );
+          Navigator.pop(context);
+          Navigator.pushNamed(context, "/new-post");
         },
         icon: const Icon(Icons.add),
-        label: const Text("Nova postagem"),
+        label: const Text('Nova postagem'),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.feed),
-            label: "Feed",
+            label: 'Feed',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.my_library_add),
-            label: "Minhas postagens",
+            label: 'Minhas postagens',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.notifications),
-            label: "Notificações",
+            label: 'Notificações',
           ),
         ],
         currentIndex: _selectedBottomTabIndex,

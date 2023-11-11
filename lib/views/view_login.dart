@@ -14,8 +14,8 @@ class ViewLogin extends StatefulWidget {
 class _ViewLoginState extends State<ViewLogin> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  String username = "";
-  String password = "";
+  String username = '';
+  String password = '';
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class _ViewLoginState extends State<ViewLogin> {
             context: context,
             builder: (context) {
               return AlertDialog(
-                title: const Text("Não foi possível realizar o login"),
+                title: const Text('Não foi possível realizar o login'),
                 content: Text(state.message),
               );
             },
@@ -43,7 +43,7 @@ class _ViewLoginState extends State<ViewLogin> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset(
-                    "assets/procuracao-logo.png",
+                    'assets/procuracao-logo.png',
                     height: 150,
                     width: 150,
                   ),
@@ -68,13 +68,13 @@ class _ViewLoginState extends State<ViewLogin> {
                             validator: (String? inValue) {
                               if (inValue != null) {
                                 if (inValue.isEmpty) {
-                                  return "Insira um e-mail de usuário";
+                                  return 'Insira um e-mail de usuário';
                                 }
                               }
                               return null;
                             },
                             onSaved: (String? inValue) {
-                              username = inValue ?? "";
+                              username = inValue ?? '';
                             },
                             decoration: const InputDecoration(
                               border: OutlineInputBorder(
@@ -82,8 +82,8 @@ class _ViewLoginState extends State<ViewLogin> {
                                   color: Color.fromRGBO(97, 164, 80, 1),
                                 ),
                               ),
-                              hintText: "exemplo@hotmail.com",
-                              labelText: "Digite seu e-mail",
+                              hintText: 'exemplo@hotmail.com',
+                              labelText: 'Digite seu e-mail',
                               filled: true,
                               fillColor: Colors.white,
                             ),
@@ -94,13 +94,13 @@ class _ViewLoginState extends State<ViewLogin> {
                             validator: (String? inValue) {
                               if (inValue != null) {
                                 if (inValue.length < 8) {
-                                  return "Mínimo de 8 caracteres";
+                                  return 'Mínimo de 8 caracteres';
                                 }
                               }
                               return null;
                             },
                             onSaved: (String? inValue) {
-                              password = inValue ?? "";
+                              password = inValue ?? '';
                             },
                             decoration: const InputDecoration(
                               border: OutlineInputBorder(
@@ -108,7 +108,7 @@ class _ViewLoginState extends State<ViewLogin> {
                                   color: Color.fromRGBO(97, 164, 80, 1),
                                 ),
                               ),
-                              labelText: "Digite sua senha",
+                              labelText: 'Digite sua senha',
                               filled: true,
                               fillColor: Colors.white,
                             ),
@@ -140,18 +140,14 @@ class _ViewLoginState extends State<ViewLogin> {
                                 backgroundColor: MaterialStateProperty.all(
                                     Theme.of(context).primaryColor),
                               ),
-                              child: const Text("Fazer login"),
+                              child: const Text('FAZER LOGIN'),
                             ),
                           ),
                           const SizedBox(height: 20),
                           ElevatedButton(
-                            onPressed: () => {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const ViewRegister(),
-                                ),
-                              )
+                            onPressed: () {
+                              Navigator.pop(context);
+                              Navigator.pushNamed(context, '/register');
                             },
                             style: ButtonStyle(
                               backgroundColor:
@@ -160,7 +156,7 @@ class _ViewLoginState extends State<ViewLogin> {
                                   MaterialStateProperty.all(Colors.transparent),
                             ),
                             child: const Text(
-                              "Quero me cadastrar",
+                              'QUERO ME CADASTRAR',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Color.fromRGBO(39, 180, 231, 1),

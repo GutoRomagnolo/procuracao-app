@@ -41,7 +41,7 @@ class ViewIntroduction extends StatelessWidget {
                   shadowColor: MaterialStateProperty.all(Colors.transparent),
                 ),
                 child: const Text(
-                  'Quero fazer parte',
+                  'QUERO FAZER PARTE',
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:procuracaoapp/components/menu_component.dart';
 
-class ViewUserPassword extends StatelessWidget {
-  const ViewUserPassword({super.key});
+class ViewChangePassword extends StatelessWidget {
+  const ViewChangePassword({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class ViewUserPassword extends StatelessWidget {
                         color: Color.fromRGBO(97, 164, 80, 1),
                       ),
                     ),
-                    labelText: "Digite sua senha antiga",
+                    labelText: 'Digite sua senha antiga',
                     filled: true,
                     fillColor: Colors.white,
                   ),
@@ -47,7 +47,7 @@ class ViewUserPassword extends StatelessWidget {
                         color: Color.fromRGBO(97, 164, 80, 1),
                       ),
                     ),
-                    labelText: "Digite sua senha nova",
+                    labelText: 'Digite sua senha nova',
                     filled: true,
                     fillColor: Colors.white,
                   ),
@@ -58,17 +58,22 @@ class ViewUserPassword extends StatelessWidget {
                   height: 40,
                   child: ElevatedButton(
                     onPressed: () => {
-                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
                           backgroundColor: Colors.green,
                           duration: Duration(seconds: 5),
-                          content: Text("Senha alterada com sucesso!")))
+                          content: Text('Senha alterada com sucesso!'),
+                        ),
+                      )
                     },
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(
                           Theme.of(context).primaryColor),
                     ),
-                    child: const Text("SALVAR",
-                        style: TextStyle(fontWeight: FontWeight.bold)),
+                    child: const Text(
+                      'SALVAR',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
                   ),
                 ),
               ],

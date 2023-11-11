@@ -6,7 +6,7 @@ Stream<int> streamSendData() async* {
 }
 
 watchSendData(int receive) {
-  print("Receive message: ${receive}");
+  print('Receive message: ${receive}');
 }
 
 // 19:00
