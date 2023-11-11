@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:procuracaoapp/bloc/auth_bloc.dart';
+import 'package:procuracaoapp/views/view_change_password.dart';
 import 'package:procuracaoapp/views/view_feed.dart';
-import 'package:procuracaoapp/views/view_login.dart';
-import 'package:procuracaoapp/views/view_user_data.dart';
-import 'package:procuracaoapp/views/view_user_password.dart';
+import 'package:procuracaoapp/views/view_change_register.dart';
 
 class MenuComponent extends StatefulWidget {
   final BuildContext parentContext;
@@ -49,7 +46,7 @@ class _MenuComponentState extends State<MenuComponent> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const ViewUserData(),
+                  builder: (context) => const ViewChangeRegister(),
                 ),
               );
             },
@@ -75,12 +72,6 @@ class _MenuComponentState extends State<MenuComponent> {
               // }
               // Navigator.pop(context);
               Navigator.pushNamed(context, "/login");
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //     builder: (context) => const ViewLogin(),
-              //   ),
-              // );
             },
           ),
         ],

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:procuracaoapp/bloc/auth_bloc.dart';
 import 'package:procuracaoapp/views/view_feed.dart';
-import 'package:procuracaoapp/views/view_feed_post.dart';
+import 'package:procuracaoapp/views/view_new_post.dart';
 import 'package:procuracaoapp/views/view_introduce.dart';
 import 'package:procuracaoapp/views/view_login.dart';
 import 'package:procuracaoapp/views/view_register.dart';
@@ -40,7 +40,7 @@ class AppRouter {
           ),
         );
       case '/new-post':
-        return MaterialPageRoute(builder: (_) => const ViewFeedPost());
+        return MaterialPageRoute(builder: (_) => const ViewNewPost());
       // case '/':
       //   return MaterialPageRoute(builder: (_) => const HomeScreen());
       // case '/add':

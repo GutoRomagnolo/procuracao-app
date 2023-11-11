@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:procuracaoapp/components/menu_component.dart';
 
-class ViewUserData extends StatelessWidget {
-  const ViewUserData({super.key});
+class ViewChangeRegister extends StatelessWidget {
+  const ViewChangeRegister({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class ViewUserData extends StatelessWidget {
           iconTheme: const IconThemeData(
             color: Color.fromRGBO(0, 0, 0, 1),
           ),
-          backgroundColor: Colors.white, // Cor do appbar
+          backgroundColor: Colors.white,
         ),
         drawer: MenuComponent(parentContext: context),
         body: Container(

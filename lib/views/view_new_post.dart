@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:procuracaoapp/components/menu_component.dart';
 import 'package:procuracaoapp/model/share_location_model.dart';
 
-class ViewFeedPost extends StatefulWidget {
-  const ViewFeedPost({super.key});
+class ViewNewPost extends StatefulWidget {
+  const ViewNewPost({super.key});
 
   @override
-  State<ViewFeedPost> createState() => _ViewFeedPostState();
+  State<ViewNewPost> createState() => _ViewNewPostState();
 }
 
-class _ViewFeedPostState extends State<ViewFeedPost> {
+class _ViewNewPostState extends State<ViewNewPost> {
   final ShareLocationModel shareLocationModel = ShareLocationModel();
 
   @override

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:procuracaoapp/components/menu_component.dart';
-import 'package:procuracaoapp/views/view_feed_my_posts.dart';
-import 'package:procuracaoapp/views/view_feed_notifications.dart';
-import 'package:procuracaoapp/views/view_feed_post.dart';
-import 'package:procuracaoapp/views/view_feed_users_posts.dart';
+import 'package:procuracaoapp/views/view_notifications.dart';
+import 'package:procuracaoapp/views/view_posts.dart';
 
 class ViewFeed extends StatefulWidget {
   const ViewFeed({super.key});
@@ -32,16 +30,12 @@ class _ViewFeedState extends State<ViewFeed> {
         iconTheme: const IconThemeData(
           color: Color.fromRGBO(0, 0, 0, 1),
         ),
-        backgroundColor: Colors.white, // Cor do appbar
+        backgroundColor: Colors.white,
       ),
       drawer: MenuComponent(parentContext: context),
       body: IndexedStack(
         index: _selectedBottomTabIndex,
-        children: const [
-          ViewFeedUsersPosts(),
-          ViewFeedMyPosts(),
-          ViewFeedNotifications()
-        ],
+        children: const [ViewPosts(), ViewPosts(), ViewNotifications()],
       ),
       floatingActionButton: FloatingActionButton.extended(
         backgroundColor: Colors.green,

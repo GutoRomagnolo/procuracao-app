@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:procuracaoapp/components/post_component.dart';
 import 'package:procuracaoapp/mock.dart';
 
-class ViewFeedMyPosts extends StatelessWidget {
-  const ViewFeedMyPosts({super.key});
+class ViewPosts extends StatelessWidget {
+  const ViewPosts({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -30,14 +30,6 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         primaryColor: const Color.fromRGBO(76, 212, 103, 1),
       ),
-      // home: MultiBlocProvider(
-      //   providers: [
-      //     BlocProvider(create: (context) => AuthBloc()),
-      //   ],
-      //   child: const Scaffold(
-      //     body: ViewLogin(),
-      //   ),
-      // ),
       onGenerateRoute: _appRouter.onGenerateRoute,
     );
   }

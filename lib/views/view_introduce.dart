@@ -9,7 +9,7 @@ class ViewIntroduction extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: const Color.fromRGBO(240, 241, 223, 1), // Cor do corpo da tela
+        color: const Color.fromRGBO(240, 241, 223, 1),
         child: Container(
           padding: const EdgeInsets.all(40.0),
           child: Column(

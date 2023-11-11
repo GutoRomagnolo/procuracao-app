@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:procuracaoapp/bloc/auth_bloc.dart';
-import 'package:procuracaoapp/views/view_register.dart';
 
 class ViewLogin extends StatefulWidget {
   const ViewLogin({Key? key}) : super(key: key);
@@ -128,13 +127,6 @@ class _ViewLoginState extends State<ViewLogin> {
                                     ),
                                   );
                                 }
-
-                                // Navigator.push(
-                                //   context,
-                                //   MaterialPageRoute(
-                                //     builder: (context) => const ViewFeed(),
-                                //   ),
-                                // )
                               },
                               style: ButtonStyle(
                                 backgroundColor: MaterialStateProperty.all(

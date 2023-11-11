@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:procuracaoapp/components/notification_component.dart';
 import 'package:procuracaoapp/mock.dart';
 
-class ViewFeedNotifications extends StatelessWidget {
-  const ViewFeedNotifications({super.key});
+class ViewNotifications extends StatelessWidget {
+  const ViewNotifications({super.key});
 
   @override
   Widget build(BuildContext context) {

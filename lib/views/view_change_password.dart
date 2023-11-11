@@ -16,7 +16,7 @@ class ViewChangePassword extends StatelessWidget {
           iconTheme: const IconThemeData(
             color: Color.fromRGBO(0, 0, 0, 1),
           ),
-          backgroundColor: Colors.white, // Cor do appbar
+          backgroundColor: Colors.white,
         ),
         drawer: MenuComponent(parentContext: context),
         body: Container(
