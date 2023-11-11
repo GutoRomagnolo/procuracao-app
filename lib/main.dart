@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:procuracaoapp/bloc/auth_bloc.dart';
 import 'package:procuracaoapp/router.dart';
+import 'package:procuracaoapp/views/view_login.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -28,7 +29,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'ProcuraCão',
       theme: ThemeData(
         primaryColor: const Color.fromRGBO(76, 212, 103, 1),
       ),
@@ -37,7 +38,7 @@ class _MyAppState extends State<MyApp> {
       //     BlocProvider(create: (context) => AuthBloc()),
       //   ],
       //   child: const Scaffold(
-      //     body: ViewIntroduction(),
+      //     body: ViewLogin(),
       //   ),
       // ),
       onGenerateRoute: _appRouter.onGenerateRoute,

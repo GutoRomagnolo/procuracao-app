@@ -111,7 +111,7 @@ class _ViewRegisterState extends State<ViewRegister> {
                     }
                     return null;
                   },
-                  onSaved: (String? inValue) {
+                  onChanged: (String? inValue) {
                     password = inValue ?? "";
                   },
                   decoration: const InputDecoration(
@@ -130,6 +130,8 @@ class _ViewRegisterState extends State<ViewRegister> {
                   obscureText: true,
                   validator: (String? inValue) {
                     if (inValue != null) {
+                      print("inValue: ${inValue} password: ${this.password}");
+
                       if (inValue.length < 8) {
                         return "Mínimo de 8 caracteres";
                       }
@@ -140,8 +142,8 @@ class _ViewRegisterState extends State<ViewRegister> {
                     }
                     return null;
                   },
-                  onSaved: (String? inValue) {
-                    password = inValue ?? "";
+                  onChanged: (String? inValue) {
+                    passwordConfirmation = inValue ?? "";
                   },
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(
