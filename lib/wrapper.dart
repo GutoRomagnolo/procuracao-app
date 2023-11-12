@@ -30,11 +30,19 @@ class _WrapperState extends State<Wrapper> {
       },
       builder: (context, state) {
         if (state is Authenticated) {
-          return const ViewFeed();
+          return authenticatedWidget(context);
         } else {
-          return const ViewIntroduction();
+          return unauthenticatedWidget(context);
         }
       },
     );
   }
+}
+
+Widget authenticatedWidget(BuildContext context) {
+  return const ViewFeed();
+}
+
+Widget unauthenticatedWidget(BuildContext context) {
+  return const ViewIntroduction();
 }

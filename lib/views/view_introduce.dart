@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:procuracaoapp/views/view_register.dart';
 
 class ViewIntroduction extends StatelessWidget {
   const ViewIntroduction({super.key});

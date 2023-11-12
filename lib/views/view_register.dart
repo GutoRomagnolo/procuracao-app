@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:procuracaoapp/bloc/auth_bloc.dart';
-import 'package:procuracaoapp/views/view_feed.dart';
 
 class ViewRegister extends StatefulWidget {
   const ViewRegister({Key? key}) : super(key: key);
@@ -196,7 +195,7 @@ class _ViewRegisterState extends State<ViewRegister> {
                   ElevatedButton(
                     onPressed: () {
                       Navigator.pop(context);
-                      Navigator.pushNamed(context, '/login');
+                      Navigator.pushNamed(context, '/');
                     },
                     style: ButtonStyle(
                       backgroundColor:

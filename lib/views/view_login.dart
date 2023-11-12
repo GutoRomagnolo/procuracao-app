@@ -33,141 +33,138 @@ class _ViewLoginState extends State<ViewLogin> {
         }
       },
       builder: (context, state) {
-        if (state is Authenticated) {
-          // Navigator.pushNamed(context, '/login');
-          return const Text('Aguarde o redirecionamento...');
-        } else {
-          return Scaffold(
-            body: Container(
-              color: const Color.fromRGBO(240, 241, 223, 1),
-              child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      'assets/procuracao-logo.png',
-                      height: 150,
-                      width: 150,
+        return Scaffold(
+          body: Container(
+            color: const Color.fromRGBO(240, 241, 223, 1),
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    'assets/procuracao-logo.png',
+                    height: 150,
+                    width: 150,
+                  ),
+                  Text(
+                    'Bem-vindo(a) ao ProcuraCão!',
+                    style: TextStyle(
+                      fontSize: 22,
+                      fontFamily: GoogleFonts.quicksand().fontFamily,
+                      color: Colors.black,
                     ),
-                    Text(
-                      'Bem-vindo(a) ao ProcuraCão!',
-                      style: TextStyle(
-                        fontSize: 22,
-                        fontFamily: GoogleFonts.quicksand().fontFamily,
-                        color: Colors.black,
-                      ),
-                    ),
-                    Container(
-                      color: const Color.fromRGBO(240, 241, 223, 1),
-                      padding: const EdgeInsets.all(40.0),
-                      child: Form(
-                        key: formKey,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            TextFormField(
-                              keyboardType: TextInputType.emailAddress,
-                              validator: (String? inValue) {
-                                if (inValue != null) {
-                                  if (inValue.isEmpty) {
-                                    return 'Insira um e-mail de usuário';
-                                  }
+                  ),
+                  Container(
+                    color: const Color.fromRGBO(240, 241, 223, 1),
+                    padding: const EdgeInsets.all(40.0),
+                    child: Form(
+                      key: formKey,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          TextFormField(
+                            keyboardType: TextInputType.emailAddress,
+                            validator: (String? inValue) {
+                              if (inValue != null) {
+                                if (inValue.isEmpty) {
+                                  return 'Insira um e-mail de usuário';
                                 }
-                                return null;
-                              },
-                              onSaved: (String? inValue) {
-                                username = inValue ?? '';
-                              },
-                              decoration: const InputDecoration(
-                                border: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color.fromRGBO(97, 164, 80, 1),
-                                  ),
+                              }
+                              return null;
+                            },
+                            onSaved: (String? inValue) {
+                              username = inValue ?? '';
+                            },
+                            decoration: const InputDecoration(
+                              border: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color.fromRGBO(97, 164, 80, 1),
                                 ),
-                                hintText: 'exemplo@hotmail.com',
-                                labelText: 'Digite seu e-mail',
-                                filled: true,
-                                fillColor: Colors.white,
                               ),
+                              hintText: 'exemplo@hotmail.com',
+                              labelText: 'Digite seu e-mail',
+                              filled: true,
+                              fillColor: Colors.white,
                             ),
-                            const SizedBox(height: 20),
-                            TextFormField(
-                              obscureText: true,
-                              validator: (String? inValue) {
-                                if (inValue != null) {
-                                  if (inValue.length < 8) {
-                                    return 'Mínimo de 8 caracteres';
-                                  }
+                          ),
+                          const SizedBox(height: 20),
+                          TextFormField(
+                            obscureText: true,
+                            validator: (String? inValue) {
+                              if (inValue != null) {
+                                if (inValue.length < 8) {
+                                  return 'Mínimo de 8 caracteres';
                                 }
-                                return null;
-                              },
-                              onSaved: (String? inValue) {
-                                password = inValue ?? '';
-                              },
-                              decoration: const InputDecoration(
-                                border: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color.fromRGBO(97, 164, 80, 1),
-                                  ),
+                              }
+                              return null;
+                            },
+                            onSaved: (String? inValue) {
+                              password = inValue ?? '';
+                            },
+                            decoration: const InputDecoration(
+                              border: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color.fromRGBO(97, 164, 80, 1),
                                 ),
-                                labelText: 'Digite sua senha',
-                                filled: true,
-                                fillColor: Colors.white,
                               ),
+                              labelText: 'Digite sua senha',
+                              filled: true,
+                              fillColor: Colors.white,
                             ),
-                            const SizedBox(height: 20),
-                            SizedBox(
-                              width: MediaQuery.of(context).size.width,
-                              height: 40,
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  if (formKey.currentState!.validate()) {
-                                    formKey.currentState!.save();
-                                    BlocProvider.of<AuthBloc>(context).add(
-                                      LoginUser(
-                                        username: username,
-                                        password: password,
-                                      ),
-                                    );
-                                  }
-                                },
-                                style: ButtonStyle(
-                                  backgroundColor: MaterialStateProperty.all(
-                                      Theme.of(context).primaryColor),
-                                ),
-                                child: const Text('FAZER LOGIN'),
-                              ),
-                            ),
-                            const SizedBox(height: 20),
-                            ElevatedButton(
+                          ),
+                          const SizedBox(height: 20),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width,
+                            height: 40,
+                            child: ElevatedButton(
                               onPressed: () {
-                                Navigator.pop(context);
-                                Navigator.pushNamed(context, '/register');
+                                if (formKey.currentState!.validate()) {
+                                  formKey.currentState!.save();
+                                  BlocProvider.of<AuthBloc>(context).add(
+                                    LoginUser(
+                                      username: username,
+                                      password: password,
+                                    ),
+                                  );
+                                  // Navigator.pop(context);
+                                  Navigator.pushNamed(context, "/feed");
+                                }
                               },
                               style: ButtonStyle(
                                 backgroundColor: MaterialStateProperty.all(
-                                    Colors.transparent),
-                                shadowColor: MaterialStateProperty.all(
-                                    Colors.transparent),
+                                    Theme.of(context).primaryColor),
                               ),
-                              child: const Text(
-                                'QUERO ME CADASTRAR',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Color.fromRGBO(39, 180, 231, 1),
-                                ),
+                              child: const Text('FAZER LOGIN'),
+                            ),
+                          ),
+                          const SizedBox(height: 20),
+                          ElevatedButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                              Navigator.pushNamed(context, '/register');
+                            },
+                            style: ButtonStyle(
+                              backgroundColor:
+                                  MaterialStateProperty.all(Colors.transparent),
+                              shadowColor:
+                                  MaterialStateProperty.all(Colors.transparent),
+                            ),
+                            child: const Text(
+                              'QUERO ME CADASTRAR',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Color.fromRGBO(39, 180, 231, 1),
                               ),
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
-          );
-        }
+          ),
+        );
       },
     );
   }
