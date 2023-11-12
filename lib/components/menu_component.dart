@@ -70,8 +70,8 @@ class _MenuComponentState extends State<MenuComponent> {
               // if (state is Authenticated) {
               // BlocProvider.of<AuthBloc>(widget.parentContext).add(Logout());
               // }
-              // Navigator.pop(context);
-              Navigator.pushNamed(context, "/login");
+              Navigator.pop(widget.parentContext);
+              Navigator.pushNamed(widget.parentContext, "/login");
             },
           ),
         ],

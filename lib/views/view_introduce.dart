@@ -27,14 +27,7 @@ class ViewIntroduction extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               ElevatedButton(
-                onPressed: () => {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const ViewRegister(),
-                    ),
-                  )
-                },
+                onPressed: () => {Navigator.pushNamed(context, '/login')},
                 style: ButtonStyle(
                   backgroundColor:
                       MaterialStateProperty.all(Colors.transparent),

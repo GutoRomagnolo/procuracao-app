@@ -42,7 +42,7 @@ class _ViewFeedState extends State<ViewFeed> {
         foregroundColor: Colors.black,
         onPressed: () {
           Navigator.pop(context);
-          Navigator.pushNamed(context, "/new-post");
+          Navigator.pushNamed(context, '/new-post');
         },
         icon: const Icon(Icons.add),
         label: const Text('Nova postagem'),
