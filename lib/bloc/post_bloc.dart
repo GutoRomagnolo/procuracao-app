@@ -5,7 +5,16 @@ import 'package:procuracaoapp/model/post_model.dart';
 class PostBloc extends Bloc<PostEvent, PostState> {
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-  PostBloc() : super(WithoutPosts()) {}
+  String? uid;
+
+  PostBloc() : super(WithoutPosts()) {
+    firestore
+      .doc(uid)
+      .collection("posts")
+      .add({
+        
+      })
+  }
 }
 
 abstract class PostEvent {}
