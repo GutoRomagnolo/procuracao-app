@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:procuracaoapp/bloc/auth_bloc.dart';
-import 'package:procuracaoapp/views/view_feed.dart';
+import 'package:procuracaoapp/views/restrict_area/view_feed.dart';
+import 'package:procuracaoapp/views/view_navigation.dart';
 
 class ViewLogin extends StatefulWidget {
   const ViewLogin({Key? key}) : super(key: key);
@@ -35,7 +36,7 @@ class _ViewLoginState extends State<ViewLogin> {
       },
       builder: (context, state) {
         if (state is Authenticated) {
-          return const ViewFeed();
+          return const ViewNavigation();
         } else {
           return Scaffold(
             body: Container(

@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:procuracaoapp/bloc/auth_bloc.dart';
 import 'package:procuracaoapp/components/menu_component.dart';
-import 'package:procuracaoapp/views/view_notifications.dart';
-import 'package:procuracaoapp/views/view_posts.dart';
+import 'package:procuracaoapp/views/restrict_area/view_new_post.dart';
+import 'package:procuracaoapp/views/restrict_area/view_notifications.dart';
+import 'package:procuracaoapp/views/restrict_area/view_posts.dart';
 
 class ViewFeed extends StatefulWidget {
   const ViewFeed({super.key});
@@ -39,27 +40,26 @@ class _ViewFeedState extends State<ViewFeed> {
       },
       builder: (context, state) {
         return Scaffold(
-          appBar: AppBar(
-            title: const Text(
-              'Feed',
-              style: TextStyle(color: Colors.black),
-            ),
-            iconTheme: const IconThemeData(
-              color: Color.fromRGBO(0, 0, 0, 1),
-            ),
-            backgroundColor: Colors.white,
-          ),
-          drawer: MenuComponent(parentContext: context),
           body: IndexedStack(
             index: _selectedBottomTabIndex,
-            children: const [ViewPosts(), ViewPosts(), ViewNotifications()],
+            children: const [
+              ViewPosts(),
+              ViewPosts(),
+              ViewNotifications(),
+            ],
           ),
           floatingActionButton: FloatingActionButton.extended(
             backgroundColor: Colors.green,
             foregroundColor: Colors.black,
             onPressed: () {
-              Navigator.pop(context);
-              Navigator.pushNamed(context, '/new-post');
+              // Navigator.pop(context);
+              // Navigator.pushNamed(context, '/new-post');
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ViewNewPost(),
+                ),
+              );
             },
             icon: const Icon(Icons.add),
             label: const Text('Nova postagem'),

@@ -3,9 +3,9 @@ import 'package:procuracaoapp/model/post_model.dart';
 import 'package:procuracaoapp/model/user_model.dart';
 
 List<UserModel> usersMock = [
-  UserModel('4d02c255-5dcf-400a-9bef-b5b95615a782-ua'),
-  UserModel('4d02c255-5dcf-400a-9bef-b5b95615a782-ub'),
-  UserModel('4d02c255-5dcf-400a-9bef-b5b95615a782-uc'),
+  UserModel(uid: '4d02c255-5dcf-400a-9bef-b5b95615a782-ua'),
+  UserModel(uid: '4d02c255-5dcf-400a-9bef-b5b95615a782-ub'),
+  UserModel(uid: '4d02c255-5dcf-400a-9bef-b5b95615a782-uc'),
 ];
 
 List<PostModel> postsMock = [
