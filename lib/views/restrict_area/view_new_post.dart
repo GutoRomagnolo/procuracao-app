@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:procuracaoapp/bloc/post_bloc.dart';
 import 'package:procuracaoapp/components/menu_component.dart';
+import 'package:procuracaoapp/mock.dart';
+import 'package:procuracaoapp/model/post_model.dart';
 import 'package:procuracaoapp/model/share_location_model.dart';
 
 class ViewNewPost extends StatefulWidget {
@@ -11,6 +15,8 @@ class ViewNewPost extends StatefulWidget {
 
 class _ViewNewPostState extends State<ViewNewPost> {
   final ShareLocationModel shareLocationModel = ShareLocationModel();
+
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -29,8 +35,22 @@ class _ViewNewPostState extends State<ViewNewPost> {
         color: const Color.fromRGBO(240, 241, 223, 1),
         padding: const EdgeInsets.all(40.0),
         child: Form(
+          key: formKey,
           child: Column(
             children: [
+              TextFormField(
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Color.fromRGBO(97, 164, 80, 1),
+                    ),
+                  ),
+                  labelText: 'Nome do animal',
+                  filled: true,
+                  fillColor: Colors.white,
+                ),
+              ),
+              const SizedBox(height: 20),
               TextFormField(
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(
@@ -82,14 +102,27 @@ class _ViewNewPostState extends State<ViewNewPost> {
                 width: MediaQuery.of(context).size.width,
                 height: 40,
                 child: ElevatedButton(
-                  onPressed: () => {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        backgroundColor: Colors.green,
-                        duration: Duration(seconds: 5),
-                        content: Text('Postagem cadastrada com sucesso!'),
+                  onPressed: () {
+                    // ScaffoldMessenger.of(context).showSnackBar(
+                    //   const SnackBar(
+                    //     backgroundColor: Colors.green,
+                    //     duration: Duration(seconds: 5),
+                    //     content: Text('Postagem cadastrada com sucesso!'),
+                    //   ),
+                    // );
+                    BlocProvider.of<PostBloc>(context).add(
+                      CreatePost(
+                        post: PostModel(
+                          '4d02c255-5dcf-400a-9bef-b5b95615a782-pa',
+                          usersMock[0],
+                          'Maiuri',
+                          'Fêmea, 3 anos, bastante assustada, porém mansa.',
+                          './assets/maiuri.jpg',
+                          [42.1234, 54.2342],
+                        ),
                       ),
-                    ),
+                    );
+                    Navigator.pop(context);
                   },
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(

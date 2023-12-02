@@ -22,7 +22,7 @@ class _WrapperState extends State<Wrapper> {
             context: context,
             builder: (context) {
               return AlertDialog(
-                title: const Text("Erro ao se conectar com o Firebase"),
+                title: const Text('Erro ao se conectar com o Firebase'),
                 content: Text(state.message),
               );
             },

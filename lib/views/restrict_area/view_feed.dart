@@ -52,14 +52,7 @@ class _ViewFeedState extends State<ViewFeed> {
             backgroundColor: Colors.green,
             foregroundColor: Colors.black,
             onPressed: () {
-              // Navigator.pop(context);
-              // Navigator.pushNamed(context, '/new-post');
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const ViewNewPost(),
-                ),
-              );
+              Navigator.pushNamed(context, '/new-post');
             },
             icon: const Icon(Icons.add),
             label: const Text('Nova postagem'),

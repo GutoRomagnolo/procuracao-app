@@ -1,18 +1,18 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:procuracaoapp/bloc/auth_bloc.dart';
 import 'package:procuracaoapp/model/comment_model.dart';
 
 class CommentBloc extends Bloc<CommentEvent, CommentState> {
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-  String? commentId;
-  String? uid;
+  String commentId;
 
-  CommentBloc() : super(WithoutComments()) {
+  CommentBloc({required this.commentId}) : super(WithoutComments()) {
     on<CreateComment>(
       (event, emit) {
         try {
-          firestore.doc(uid).collection('comments').add(
+          firestore.doc(AuthBloc.uid).collection('comments').add(
             {
               'uid': event.comment.uid,
               'postModel': event.comment.postModel.uid,
@@ -32,7 +32,7 @@ class CommentBloc extends Bloc<CommentEvent, CommentState> {
     on<RetrieveComment>(
       (event, emit) {
         try {
-          firestore.doc(uid).collection('comments').get();
+          firestore.doc(AuthBloc.uid).collection('comments').get();
         } catch (e) {
           emit(ErrorComments(
               message:
@@ -44,7 +44,11 @@ class CommentBloc extends Bloc<CommentEvent, CommentState> {
     on<RetrieveOneComment>(
       (event, emit) {
         try {
-          firestore.doc(uid).collection('comments').doc(event.commentId).get();
+          firestore
+              .doc(AuthBloc.uid)
+              .collection('comments')
+              .doc(event.commentId)
+              .get();
         } catch (e) {
           emit(ErrorComments(
               message:
@@ -56,7 +60,11 @@ class CommentBloc extends Bloc<CommentEvent, CommentState> {
     on<UpdateComment>(
       (event, emit) {
         try {
-          firestore.doc(uid).collection('comments').doc(event.commentId).update(
+          firestore
+              .doc(AuthBloc.uid)
+              .collection('comments')
+              .doc(event.commentId)
+              .update(
             {
               'uid': event.comment.uid,
               'postModel': event.comment.postModel.uid,
@@ -77,7 +85,7 @@ class CommentBloc extends Bloc<CommentEvent, CommentState> {
       (event, emit) {
         try {
           firestore
-              .doc(uid)
+              .doc(AuthBloc.uid)
               .collection('comments')
               .doc(event.commentId)
               .delete();

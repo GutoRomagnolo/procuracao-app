@@ -5,6 +5,8 @@ import '../model/user_model.dart';
 // import '../provider/firebase_firestore.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
+  static String uid = 'default_user';
+
   final FirebaseAuthenticationService _authenticationService =
       FirebaseAuthenticationService();
 
@@ -15,9 +17,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     on<AuthServerEvent>((event, emit) {
       if (event.userModel == null) {
+        uid = 'default_user';
         emit(Unauthenticated());
       } else {
-        // FirestoreDatabase.helper.uid = event.userModel!.uid;
+        uid = event.userModel!.uid;
         emit(Authenticated(userModel: event.userModel!));
       }
     });

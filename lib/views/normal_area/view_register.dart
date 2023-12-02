@@ -200,7 +200,7 @@ class _ViewRegisterState extends State<ViewRegister> {
                     ElevatedButton(
                       onPressed: () {
                         Navigator.pop(context);
-                        Navigator.pushNamed(context, '/');
+                        Navigator.pushNamed(context, '/login');
                       },
                       style: ButtonStyle(
                         backgroundColor:
