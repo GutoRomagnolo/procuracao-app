@@ -1,12 +1,53 @@
-
 class CommentModel {
-  final String content;
-  final List<double> coordenates;
-  final bool read;
+  String _content = "";
+  List<double> _coordenates = [];
+  bool _viewed = false;
 
-  CommentModel(
-    this.content,
-    this.coordenates,
-    this.read,
-  );
+  CommentModel() {
+    _content = "";
+    _coordenates = [];
+    _viewed = false;
+  }
+
+  CommentModel.withData({content = "", coordenates, viewed}) {
+    _content = content;
+    _coordenates = coordenates;
+    _viewed = viewed;
+  }
+
+  CommentModel.fromMap(map) {
+    _content = map["content"];
+    _coordenates = map["coordenates"];
+    _viewed = map["viewed"];
+  }
+
+  String get content => _content;
+  List<double> get coordenates => _coordenates;
+  bool get viewed => _viewed;
+
+  set content(String newName) {
+    if (newName.isNotEmpty) {
+      _content = newName;
+    }
+  }
+
+  set coordenates(List<double> newCoordenates) {
+    if (newCoordenates.isNotEmpty) {
+      _coordenates = newCoordenates;
+    }
+  }
+
+  set viewed(bool newViewed) {
+    if (newViewed) {
+      _viewed = newViewed;
+    }
+  }
+
+  toMap() {
+    var map = <String, dynamic>{};
+    map["content"] = _content;
+    map["coordenates"] = _coordenates;
+    map["viewed"] = _viewed;
+    return map;
+  }
 }

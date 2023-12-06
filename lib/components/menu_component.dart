@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:procuracaoapp/bloc/auth_bloc.dart';
-import 'package:procuracaoapp/views/restrict_area/view_change_password.dart';
 import 'package:procuracaoapp/views/restrict_area/view_feed.dart';
-import 'package:procuracaoapp/views/restrict_area/view_change_register.dart';
 
 class MenuComponent extends StatefulWidget {
   final BuildContext parentContext;
@@ -52,30 +50,6 @@ class _MenuComponentState extends State<MenuComponent> {
                     context,
                     MaterialPageRoute(
                       builder: (context) => const ViewFeed(),
-                    ),
-                  );
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.person),
-                title: const Text("Dados cadastrais"),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const ViewChangeRegister(),
-                    ),
-                  );
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.password),
-                title: const Text("Alterar senha"),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const ViewChangePassword(),
                     ),
                   );
                 },

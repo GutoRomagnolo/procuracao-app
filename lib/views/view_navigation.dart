@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:procuracaoapp/bloc/auth_bloc.dart';
-import 'package:procuracaoapp/views/restrict_area/view_change_password.dart';
-import 'package:procuracaoapp/views/restrict_area/view_change_register.dart';
 import 'package:procuracaoapp/views/restrict_area/view_feed.dart';
 
 class ViewNavigation extends StatefulWidget {
@@ -55,8 +53,6 @@ class _ViewNavigationState extends State<ViewNavigation> {
             index: _currentScreen,
             children: const [
               ViewFeed(),
-              ViewChangeRegister(),
-              ViewChangePassword(),
             ],
           ),
           drawer: Drawer(
@@ -76,22 +72,6 @@ class _ViewNavigationState extends State<ViewNavigation> {
                   title: const Text("Feed"),
                   onTap: () {
                     _drawerItemNavigation(0, "Feed");
-                    Navigator.pop(context);
-                  },
-                ),
-                ListTile(
-                  leading: const Icon(Icons.person),
-                  title: const Text("Dados cadastrais"),
-                  onTap: () {
-                    _drawerItemNavigation(1, "Dados cadastrais");
-                    Navigator.pop(context);
-                  },
-                ),
-                ListTile(
-                  leading: const Icon(Icons.password),
-                  title: const Text("Alterar senha"),
-                  onTap: () {
-                    _drawerItemNavigation(2, "Alterar senha");
                     Navigator.pop(context);
                   },
                 ),

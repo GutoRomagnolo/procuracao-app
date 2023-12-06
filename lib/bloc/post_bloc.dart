@@ -10,18 +10,7 @@ class PostBloc extends Bloc<PostEvent, PostState> {
     on<CreatePost>(
       (event, emit) {
         try {
-          firestore
-              .collection('users')
-              .doc(AuthBloc.uid)
-              .collection('posts')
-              .add(
-            {
-              'name': event.post.name,
-              'description': event.post.description,
-              'photo': event.post.photo,
-              'coordenates': event.post.coordenates,
-            },
-          );
+          emit(CreatePost(post: event.post));
         } catch (e) {
           emit(ErrorPosts(
               message:
