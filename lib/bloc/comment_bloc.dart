@@ -5,7 +5,6 @@ import 'package:procuracaoapp/model/comment_model.dart';
 
 class CommentBloc extends Bloc<CommentEvent, CommentState> {
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
-
   String commentId;
 
   CommentBloc({required this.commentId}) : super(WithoutComments()) {
