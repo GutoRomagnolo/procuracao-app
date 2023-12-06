@@ -10,7 +10,7 @@ class PostBloc extends Bloc<PostEvent, PostState> {
     on<CreatePost>(
       (event, emit) {
         try {
-          emit(CreatePost(post: event.post));
+          emit(ObtainedPosts(post: event.post));
         } catch (e) {
           emit(ErrorPosts(
               message:
@@ -63,7 +63,7 @@ class PostBloc extends Bloc<PostEvent, PostState> {
             {
               'name': event.post.name,
               'description': event.post.description,
-              'photo': event.post.photo,
+              'path': event.post.path,
               'coordenates': event.post.coordenates,
             },
           );

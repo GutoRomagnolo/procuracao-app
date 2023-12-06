@@ -9,8 +9,6 @@ class FirestoreDatabase {
 
   FirestoreDatabase._createInstance();
 
-  AuthBloc? authBloc;
-
   final CollectionReference usersCollection =
       FirebaseFirestore.instance.collection('users');
 
@@ -20,14 +18,14 @@ class FirestoreDatabase {
       {
         'name': post.name,
         'description': post.description,
-        'photo': post.path,
+        'path': post.path,
         'coordenates': post.coordenates,
       },
     );
 
     if (post.fileBytes != null) {
       UploadTask? task = StorageServer.helper
-          .insertImage(authBloc.uid!, reference.id, post.fileBytes!);
+          .insertImage(AuthBloc.uid, reference.id, post.fileBytes!);
       var snapshot = await task.whenComplete(() {});
       post.path = await snapshot.ref.getDownloadURL();
 
@@ -35,7 +33,7 @@ class FirestoreDatabase {
         {
           'name': post.name,
           'description': post.description,
-          'photo': post.path,
+          'path': post.path,
           'coordenates': post.coordenates,
         },
       );

@@ -7,18 +7,18 @@ class StorageServer {
   // Construtor privado
   StorageServer._createInstance();
 
-  Reference noteImage = FirebaseStorage.instance.ref().child("images");
+  Reference postImage = FirebaseStorage.instance.ref().child("images");
 
-  UploadTask? insertImage(String username, String noteId, Uint8List fileBytes) {
+  UploadTask? insertImage(String uid, String postId, Uint8List fileBytes) {
     try {
-      var ref = noteImage.child(username).child("$noteId.jpg");
+      var ref = postImage.child(uid).child(postId);
       return ref.putData(fileBytes);
     } on FirebaseException {
       return null;
     }
   }
 
-  deleteImage(String username, String noteId) {
-    noteImage.child(username).child("$noteId.jpg").delete();
+  deleteImage(String uid, String postId) {
+    postImage.child(uid).child(postId).delete();
   }
 }

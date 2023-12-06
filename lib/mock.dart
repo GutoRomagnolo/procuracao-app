@@ -9,29 +9,30 @@ List<UserModel> usersMock = [
 ];
 
 List<PostModel> postsMock = [
-  PostModel(
-    'Maiuri',
-    'Fêmea, 3 anos, bastante assustada, porém mansa.',
-    './assets/maiuri.jpg',
-    [42.1234, 54.2342],
+  PostModel.withData(
+    name: 'Maiuri',
+    description: 'Fêmea, 3 anos, bastante assustada, porém mansa.',
+    path: './assets/maiuri.jpg',
+    coordenates: [42.1234, 54.2342],
   ),
-  PostModel(
-    'Frajole',
-    'Fêmea, 1 anos, bastante assustada, porém mansa.',
-    './assets/princesa.jpg',
-    [42.1234, 54.2342],
+  PostModel.withData(
+    name: 'Frajole',
+    description: 'Fêmea, 1 anos, bastante assustada, porém mansa.',
+    path: './assets/princesa.jpg',
+    coordenates: [42.1234, 54.2342],
   ),
 ];
 
 List<CommentModel> commentsMock = [
-  CommentModel(
-    'Vi ela próximo a área verde do CECAP, ela é filhote ainda?.',
-    [42.1234, 54.2342],
-    false,
+  CommentModel.withData(
+    content: 'Vi ela próximo a área verde do CECAP, ela é filhote ainda?.',
+    coordenates: [42.1234, 54.2342],
+    viewed: false,
   ),
-  CommentModel(
-    'Estava próximo da rotatória, tentei pegar ela no colo, mas não deixou :(',
-    [42.1234, 54.2342],
-    false,
+  CommentModel.withData(
+    content:
+        'Estava próximo da rotatória, tentei pegar ela no colo, mas não deixou :(',
+    coordenates: [42.1234, 54.2342],
+    viewed: false,
   ),
 ];

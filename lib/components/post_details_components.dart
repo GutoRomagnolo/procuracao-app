@@ -25,7 +25,7 @@ class PostDetailsScreen extends StatelessWidget {
                 children: [
                   // Exibir a imagem do post
                   Image.network(
-                    postModel.photo,
+                    postModel.path,
                     width: 200.0, // Ajuste conforme necessário
                     height: 200.0, // Ajuste conforme necessário
                     fit: BoxFit.cover,

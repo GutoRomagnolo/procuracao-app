@@ -15,7 +15,7 @@ class PostComponent extends StatelessWidget {
           ListTile(title: Text(postModel.name)),
           Text(postModel.description),
           const SizedBox(height: 20),
-          Image.asset(postModel.photo),
+          Image.asset(postModel.path),
           const SizedBox(height: 20),
         ],
       ),

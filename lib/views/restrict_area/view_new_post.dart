@@ -1,7 +1,9 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:procuracaoapp/bloc/post_bloc.dart';
-import 'package:procuracaoapp/mock.dart';
+import 'package:procuracaoapp/components/file_picker.dart';
 import 'package:procuracaoapp/model/post_model.dart';
 import 'package:procuracaoapp/model/share_location_model.dart';
 
@@ -13,9 +15,12 @@ class ViewNewPost extends StatefulWidget {
 }
 
 class _ViewNewPostState extends State<ViewNewPost> {
-  final ShareLocationModel shareLocationModel = ShareLocationModel();
-
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
+  String name = "";
+  String description = "";
+  Uint8List? fileBytes;
+  ShareLocationModel coordenates = ShareLocationModel();
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +43,17 @@ class _ViewNewPostState extends State<ViewNewPost> {
           child: Column(
             children: [
               TextFormField(
+                validator: (String? inValue) {
+                  if (inValue != null) {
+                    if (inValue.isEmpty) {
+                      return 'Insira o nome do animal';
+                    }
+                  }
+                  return null;
+                },
+                onChanged: (String? inValue) {
+                  name = inValue ?? '';
+                },
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(
                     borderSide: BorderSide(
@@ -51,6 +67,17 @@ class _ViewNewPostState extends State<ViewNewPost> {
               ),
               const SizedBox(height: 20),
               TextFormField(
+                validator: (String? inValue) {
+                  if (inValue != null) {
+                    if (inValue.isEmpty) {
+                      return 'Descreva o que aconteceu com o animal';
+                    }
+                  }
+                  return null;
+                },
+                onChanged: (String? inValue) {
+                  description = inValue ?? '';
+                },
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(
                     borderSide: BorderSide(
@@ -67,16 +94,16 @@ class _ViewNewPostState extends State<ViewNewPost> {
               const SizedBox(height: 20),
               Row(
                 children: [
-                  MaterialButton(
-                    color: Colors.blue,
-                    child: const Text(
-                      'Escolha uma foto do animal',
-                      style: TextStyle(
-                        color: Colors.white70,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    onPressed: () {},
+                  PickAFile(
+                    validator: (Uint8List? fileBytes) {
+                      if (fileBytes == null) {
+                        return "Escolha uma foto do animal";
+                      }
+                      return null;
+                    },
+                    onSaved: (Uint8List? inValue) {
+                      fileBytes = inValue;
+                    },
                   ),
                 ],
               ),
@@ -84,11 +111,11 @@ class _ViewNewPostState extends State<ViewNewPost> {
               Row(
                 children: [
                   Switch(
-                    value: shareLocationModel.shareLocation,
+                    value: coordenates.shareLocation,
                     onChanged: (bool? inValue) {
                       if (inValue != null) {
                         setState(() {
-                          shareLocationModel.shareLocation = inValue;
+                          coordenates.shareLocation = inValue;
                         });
                       }
                     },
@@ -111,11 +138,11 @@ class _ViewNewPostState extends State<ViewNewPost> {
                     // );
                     BlocProvider.of<PostBloc>(context).add(
                       CreatePost(
-                        post: PostModel(
-                          'Maiuri',
-                          'Fêmea, 3 anos, bastante assustada, porém mansa.',
-                          './assets/maiuri.jpg',
-                          [42.1234, 54.2342],
+                        post: PostModel.withData(
+                          name: name,
+                          description: description,
+                          path: fileBytes,
+                          coordenates: coordenates,
                         ),
                       ),
                     );
