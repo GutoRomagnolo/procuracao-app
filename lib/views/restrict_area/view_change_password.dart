@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:procuracaoapp/components/menu_component.dart';
 
 class ViewChangePassword extends StatelessWidget {
   const ViewChangePassword({super.key});

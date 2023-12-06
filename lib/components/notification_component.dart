@@ -10,7 +10,7 @@ class NotificationComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       title: Text(
-        commentModel.postModel.name,
+        commentModel.content,
         style: const TextStyle(fontWeight: FontWeight.bold),
       ),
       subtitle: Text(commentModel.content),

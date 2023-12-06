@@ -12,10 +12,14 @@ class CommentBloc extends Bloc<CommentEvent, CommentState> {
     on<CreateComment>(
       (event, emit) {
         try {
-          firestore.doc(AuthBloc.uid).collection('comments').add(
+          firestore
+              .collection('users')
+              .doc(AuthBloc.uid)
+              .collection('posts')
+              .doc(event.postId)
+              .collection('comments')
+              .add(
             {
-              'uid': event.comment.uid,
-              'postModel': event.comment.postModel.uid,
               'content': event.comment.content,
               'coordenates': event.comment.coordenates,
               'read': event.comment.read,
@@ -32,7 +36,13 @@ class CommentBloc extends Bloc<CommentEvent, CommentState> {
     on<RetrieveComment>(
       (event, emit) {
         try {
-          firestore.doc(AuthBloc.uid).collection('comments').get();
+          firestore
+              .collection('users')
+              .doc(AuthBloc.uid)
+              .collection('posts')
+              .doc(event.postId)
+              .collection('comments')
+              .get();
         } catch (e) {
           emit(ErrorComments(
               message:
@@ -45,7 +55,10 @@ class CommentBloc extends Bloc<CommentEvent, CommentState> {
       (event, emit) {
         try {
           firestore
+              .collection('users')
               .doc(AuthBloc.uid)
+              .collection('posts')
+              .doc(event.postId)
               .collection('comments')
               .doc(event.commentId)
               .get();
@@ -61,13 +74,14 @@ class CommentBloc extends Bloc<CommentEvent, CommentState> {
       (event, emit) {
         try {
           firestore
+              .collection('users')
               .doc(AuthBloc.uid)
+              .collection('posts')
+              .doc(event.postId)
               .collection('comments')
               .doc(event.commentId)
               .update(
             {
-              'uid': event.comment.uid,
-              'postModel': event.comment.postModel.uid,
               'content': event.comment.content,
               'coordenates': event.comment.coordenates,
               'read': event.comment.read,
@@ -85,7 +99,10 @@ class CommentBloc extends Bloc<CommentEvent, CommentState> {
       (event, emit) {
         try {
           firestore
+              .collection('users')
               .doc(AuthBloc.uid)
+              .collection('posts')
+              .doc(event.postId)
               .collection('comments')
               .doc(event.commentId)
               .delete();

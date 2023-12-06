@@ -16,8 +16,6 @@ class PostBloc extends Bloc<PostEvent, PostState> {
               .collection('posts')
               .add(
             {
-              'uid': event.post.uid,
-              'userModel': event.post.userModel.uid,
               'name': event.post.name,
               'description': event.post.description,
               'photo': event.post.photo,
@@ -35,7 +33,11 @@ class PostBloc extends Bloc<PostEvent, PostState> {
     on<RetrievePost>(
       (event, emit) {
         try {
-          firestore.doc(AuthBloc.uid).collection('posts').get();
+          firestore
+              .collection('users')
+              .doc(AuthBloc.uid)
+              .collection('posts')
+              .get();
         } catch (e) {
           emit(ErrorPosts(
               message: 'Não foi possível obter postagens, tente novamente.'));
@@ -47,6 +49,7 @@ class PostBloc extends Bloc<PostEvent, PostState> {
       (event, emit) {
         try {
           firestore
+              .collection('users')
               .doc(AuthBloc.uid)
               .collection('posts')
               .doc(event.postId)
@@ -63,13 +66,12 @@ class PostBloc extends Bloc<PostEvent, PostState> {
       (event, emit) {
         try {
           firestore
+              .collection('users')
               .doc(AuthBloc.uid)
               .collection('posts')
               .doc(event.postId)
               .update(
             {
-              'uid': event.post.uid,
-              'userModel': event.post.userModel.uid,
               'name': event.post.name,
               'description': event.post.description,
               'photo': event.post.photo,
@@ -88,6 +90,7 @@ class PostBloc extends Bloc<PostEvent, PostState> {
       (event, emit) {
         try {
           firestore
+              .collection('users')
               .doc(AuthBloc.uid)
               .collection('posts')
               .doc(event.postId)

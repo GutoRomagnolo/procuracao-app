@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:procuracaoapp/bloc/post_bloc.dart';
-import 'package:procuracaoapp/components/menu_component.dart';
 import 'package:procuracaoapp/mock.dart';
 import 'package:procuracaoapp/model/post_model.dart';
 import 'package:procuracaoapp/model/share_location_model.dart';
@@ -113,8 +112,6 @@ class _ViewNewPostState extends State<ViewNewPost> {
                     BlocProvider.of<PostBloc>(context).add(
                       CreatePost(
                         post: PostModel(
-                          '4d02c255-5dcf-400a-9bef-b5b95615a782-pa',
-                          usersMock[0],
                           'Maiuri',
                           'Fêmea, 3 anos, bastante assustada, porém mansa.',
                           './assets/maiuri.jpg',
