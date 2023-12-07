@@ -125,11 +125,11 @@ class FirestoreDatabase {
 
   Stream get stream {
     return usersCollection
-        .doc(authBloc.uid)
-        .collection("my_notes")
+        .doc(AuthBloc.uid)
+        .collection("posts")
         .snapshots()
         .map((snapshot) {
-      NoteCollection retorno = NoteCollection();
+      List<PostModel> retorno = NoteCollection();
 
       for (var doc in snapshot.docs) {
         Note note = Note.fromMap(doc.data());

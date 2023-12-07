@@ -6,12 +6,9 @@ import 'package:procuracaoapp/bloc/comment_bloc.dart';
 
 class PostDetailsScreen extends StatelessWidget {
   final PostModel postModel;
-  final CommentBloc commentBloc;
   final TextEditingController commentController = TextEditingController();
 
-  PostDetailsScreen(
-      {Key? key, required this.postModel, required this.commentBloc})
-      : super(key: key);
+  PostDetailsScreen({Key? key, required this.postModel}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -118,10 +115,7 @@ class PostDetailsScreen extends StatelessWidget {
                   BlocProvider.of<CommentBloc>(context).add(
                     CreateComment(
                       comment: CommentModel.withData(
-                        content: content,
-                        coordenates: [],
-                        viewed: false
-                      ),
+                          content: content, coordenates: [], viewed: false),
                     ),
                   );
 

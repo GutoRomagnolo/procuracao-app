@@ -75,7 +75,6 @@ class PostBloc extends Bloc<PostEvent, PostState> {
               .collection('users')
               .doc(AuthBloc.uid)
               .collection('posts')
-              .doc(event.postId)
               .get();
         } catch (e) {
           emit(ErrorPosts(

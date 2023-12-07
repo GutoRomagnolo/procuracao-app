@@ -1,14 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:procuracaoapp/bloc/auth_bloc.dart';
+import 'package:procuracaoapp/bloc/post_bloc.dart';
 import 'package:procuracaoapp/model/comment_model.dart';
 
 class CommentBloc extends Bloc<CommentEvent, CommentState> {
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
   String commentId;
+  String postId = "h3LXsjiptMugmfpWnib6";
 
-  CommentBloc({required this.commentId})
-      : super(WithoutComments()) {
+  CommentBloc({required this.commentId}) : super(WithoutComments()) {
     on<CreateComment>(
       (event, emit) {
         try {
@@ -16,13 +17,13 @@ class CommentBloc extends Bloc<CommentEvent, CommentState> {
               .collection('users')
               .doc(AuthBloc.uid)
               .collection('posts')
-              .doc(event.postId)
+              .doc(postId)
               .collection('comments')
               .add(
             {
               'content': event.comment.content,
               'coordenates': event.comment.coordenates,
-              'read': event.comment.read,
+              'viewed': event.comment.viewed,
             },
           );
         } catch (e) {
@@ -40,7 +41,7 @@ class CommentBloc extends Bloc<CommentEvent, CommentState> {
               .collection('users')
               .doc(AuthBloc.uid)
               .collection('posts')
-              .doc(event.postId)
+              .doc(postId)
               .collection('comments')
               .get();
         } catch (e) {
@@ -58,7 +59,7 @@ class CommentBloc extends Bloc<CommentEvent, CommentState> {
               .collection('users')
               .doc(AuthBloc.uid)
               .collection('posts')
-              .doc(event.postId)
+              .doc(postId)
               .collection('comments')
               .doc(event.commentId)
               .get();
@@ -77,14 +78,14 @@ class CommentBloc extends Bloc<CommentEvent, CommentState> {
               .collection('users')
               .doc(AuthBloc.uid)
               .collection('posts')
-              .doc(event.postId)
+              .doc(postId)
               .collection('comments')
               .doc(event.commentId)
               .update(
             {
               'content': event.comment.content,
               'coordenates': event.comment.coordenates,
-              'read': event.comment.read,
+              'viewed': event.comment.viewed,
             },
           );
         } catch (e) {
@@ -102,7 +103,7 @@ class CommentBloc extends Bloc<CommentEvent, CommentState> {
               .collection('users')
               .doc(AuthBloc.uid)
               .collection('posts')
-              .doc(event.postId)
+              .doc(postId)
               .collection('comments')
               .doc(event.commentId)
               .delete();
