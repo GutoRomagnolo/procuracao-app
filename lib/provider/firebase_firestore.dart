@@ -44,99 +44,53 @@ class FirestoreDatabase {
     }
   }
 
-  // getNoteList() async {
-  //   QuerySnapshot snapshot =
-  //       await usersCollection.doc(authBloc.uid).collection("my_notes").get();
+  retrievePosts() async {
+    QuerySnapshot snapshot =
+        await usersCollection.doc(AuthBloc.uid).collection('posts').get();
 
-  //   NoteCollection retorno = NoteCollection();
+    List<PostModel> result = [];
 
-  //   for (var doc in snapshot.docs) {
-  //     Note note = Note.fromMap(doc.data());
-  //     retorno.insertNoteOfId(doc.id, note);
-  //   }
+    for (var doc in snapshot.docs) {
+      PostModel post = PostModel.fromMap(doc.data());
+      result.add(post); // { doc.id, post }
+    }
 
-  //   return retorno;
-  // }
+    return result;
+  }
 
-  // getNote(noteId) async {
-  //   DocumentSnapshot doc = await usersCollection
-  //       .doc(authBloc.uid)
-  //       .collection("my_notes")
-  //       .doc(noteId)
-  //       .get();
-  //   return Note.fromMap(doc.data());
-  // }
+  retrievePostById(postId) async {
+    DocumentSnapshot doc = await usersCollection
+        .doc(AuthBloc.uid)
+        .collection('posts')
+        .doc(postId)
+        .get();
+    return PostModel.fromMap(doc.data());
+  }
 
-  // insertNote(Note note) async {
-  //   // Passo 1
-  //   DocumentReference ref = await usersCollection
-  //       .doc(authBloc.uid)
-  //       .collection(
-  //         "my_notes",
-  //       )
-  //       .add({
-  //     "title": post.title,
-  //     "description": post.description,
-  //     "path": post.path
-  //   });
-
-  //   if (post.fileBytes != null) {
-  //     UploadTask? task = StorageServer.helper
-  //         .insertImage(authBloc.uid!, ref.id, post.fileBytes!);
-  //     var snapshot = await task.whenComplete(() {});
-  //     post.path = await snapshot.ref.getDownloadURL();
-
-  //     await usersCollection
-  //         .doc(authBloc.uid)
-  //         .collection("my_notes")
-  //         .doc(ref.id)
-  //         .update({
-  //       "title": post.title,
-  //       "description": post.description,
-  //       "path": post.path
-  //     });
-  //   }
-
-  //   // Passo 3: Autalizar o firestore com a URL
-  // }
-
-  // updateNote(noteId, Note note) async {
-  //   usersCollection
-  //       .doc(authBloc.uid)
-  //       .collection("my_notes")
-  //       .doc(
-  //         noteId,
-  //       )
-  //       .update(
-  //     {
-  //       "title": post.title,
-  //       "description": post.description,
-  //     },
-  //   );
-  // }
-
-  // deleteNote(noteId) async {
-  //   await usersCollection
-  //       .doc(authBloc.uid)
-  //       .collection("my_notes")
-  //       .doc(noteId)
-  //       .delete();
-  // }
+  deletePost(postId) async {
+    await usersCollection
+        .doc(AuthBloc.uid)
+        .collection('posts')
+        .doc(postId)
+        .delete();
+  }
 
   Stream get stream {
     return usersCollection
         .doc(AuthBloc.uid)
-        .collection("posts")
+        .collection('posts')
         .snapshots()
-        .map((snapshot) {
-      List<PostModel> retorno = NoteCollection();
+        .map(
+      (snapshot) {
+        List<PostModel> result = [];
 
-      for (var doc in snapshot.docs) {
-        Note note = Note.fromMap(doc.data());
-        retorno.insertNoteOfId(doc.id, note);
-      }
+        for (var doc in snapshot.docs) {
+          PostModel post = PostModel.fromMap(doc.data());
+          result.add(post); // doc.id,
+        }
 
-      return retorno;
-    });
+        return result;
+      },
+    );
   }
 }

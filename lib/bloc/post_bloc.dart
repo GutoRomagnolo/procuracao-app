@@ -1,128 +1,36 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
+import 'dart:async';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:procuracaoapp/bloc/auth_bloc.dart';
 import 'package:procuracaoapp/model/post_model.dart';
-import 'package:procuracaoapp/provider/firebase_storage.dart';
+import 'package:procuracaoapp/provider/firebase_firestore.dart';
 
 class PostBloc extends Bloc<PostEvent, PostState> {
-  final FirebaseFirestore firestore = FirebaseFirestore.instance;
+  List<PostModel> result = [];
+  StreamSubscription? subscription;
 
-  PostBloc() : super(WithoutPosts()) {
+  PostBloc() : super(PostState(result: [])) {
     on<CreatePost>(
       (event, emit) async {
-        try {
-          DocumentReference reference = await firestore
-              .collection('users')
-              .doc(AuthBloc.uid)
-              .collection('posts')
-              .add(
-            {
-              'name': event.post.name,
-              'description': event.post.description,
-              'path': event.post.path,
-              'coordenates': event.post.coordenates,
-            },
-          );
-
-          if (event.post.fileBytes != null) {
-            UploadTask? task = StorageServer.helper
-                .insertImage(AuthBloc.uid, reference.id, event.post.fileBytes!);
-            var snapshot = await task!.whenComplete(() {});
-            event.post.path = await snapshot.ref.getDownloadURL();
-
-            await firestore
-                .collection('users')
-                .doc(AuthBloc.uid)
-                .collection('posts')
-                .doc(reference.id)
-                .update(
-              {
-                'name': event.post.name,
-                'description': event.post.description,
-                'path': event.post.path,
-                'coordenates': event.post.coordenates,
-              },
-            );
-          }
-        } catch (e) {
-          emit(ErrorPosts(
-              message:
-                  'Não foi possível cadastrar a postagem, tente novamente.'));
-        }
+        FirestoreDatabase.helper.createPost(event.post);
       },
     );
 
     on<RetrievePost>(
-      (event, emit) {
-        try {
-          firestore
-              .collection('users')
-              .doc(AuthBloc.uid)
-              .collection('posts')
-              .get();
-        } catch (e) {
-          emit(ErrorPosts(
-              message: 'Não foi possível obter postagens, tente novamente.'));
-        }
+      (event, emit) async {
+        result = await FirestoreDatabase.helper.retrievePosts();
+        emit(PostState(result: result));
       },
     );
 
     on<RetrieveOnePost>(
-      (event, emit) {
-        try {
-          firestore
-              .collection('users')
-              .doc(AuthBloc.uid)
-              .collection('posts')
-              .get();
-        } catch (e) {
-          emit(ErrorPosts(
-              message:
-                  'Não foi possível obter essa postagem, tente novamente.'));
-        }
-      },
-    );
-
-    on<UpdatePost>(
-      (event, emit) {
-        try {
-          firestore
-              .collection('users')
-              .doc(AuthBloc.uid)
-              .collection('posts')
-              .doc(event.postId)
-              .update(
-            {
-              'name': event.post.name,
-              'description': event.post.description,
-              'path': event.post.path,
-              'coordenates': event.post.coordenates,
-            },
-          );
-        } catch (e) {
-          emit(ErrorPosts(
-              message:
-                  'Não foi possível atualizar a postagem, tente novamente.'));
-        }
+      (event, emit) async {
+        result = await FirestoreDatabase.helper.retrievePostById(event.postId);
+        emit(PostState(result: result));
       },
     );
 
     on<DeletePost>(
-      (event, emit) {
-        try {
-          firestore
-              .collection('users')
-              .doc(AuthBloc.uid)
-              .collection('posts')
-              .doc(event.postId)
-              .delete();
-        } catch (e) {
-          emit(ErrorPosts(
-              message:
-                  'Não foi possível remover a postagem, tente novamente.'));
-        }
-      },
+      (event, emit) => FirestoreDatabase.helper.deletePost(event.postId),
     );
   }
 }
@@ -143,31 +51,13 @@ class RetrieveOnePost extends PostEvent {
   RetrieveOnePost({required this.postId});
 }
 
-class UpdatePost extends PostEvent {
-  String postId;
-  PostModel post;
-
-  UpdatePost({required this.postId, required this.post});
-}
-
 class DeletePost extends PostEvent {
   String postId;
 
   DeletePost({required this.postId});
 }
 
-abstract class PostState {}
-
-class WithoutPosts extends PostState {}
-
-class ObtainedPosts extends PostState {
-  PostModel post;
-
-  ObtainedPosts({required this.post});
-}
-
-class ErrorPosts extends PostState {
-  final String message;
-
-  ErrorPosts({required this.message});
+class PostState {
+  List<PostModel> result;
+  PostState({required this.result});
 }
