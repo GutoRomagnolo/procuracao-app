@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:procuracaoapp/components/post_component.dart';
 import 'package:procuracaoapp/mock.dart';
 import 'package:procuracaoapp/model/post_model.dart';
-import './../../components/post_details_components.dart';
+import 'package:procuracaoapp/components/post_details_component.dart';
+import 'package:procuracaoapp/bloc/comment_bloc.dart';
 
 class ViewPosts extends StatelessWidget {
   const ViewPosts({Key? key}) : super(key: key);
@@ -27,10 +29,13 @@ class ViewPosts extends StatelessWidget {
   }
 
   void _openPostDetails(BuildContext context, PostModel post) {
+    CommentBloc commentBloc = CommentBloc();
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => PostDetailsScreen(postModel: post),
+        builder: (context) => BlocProvider.value(
+          value: commentBloc, child: PostDetailsScreen(postModel: post)
+        )
       ),
     );
   }

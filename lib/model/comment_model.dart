@@ -1,6 +1,6 @@
 class CommentModel {
   String _content = "";
-  List<double> _coordenates = [];
+  List<dynamic> _coordenates = [];
   bool _viewed = false;
 
   CommentModel() {
@@ -22,7 +22,7 @@ class CommentModel {
   }
 
   String get content => _content;
-  List<double> get coordenates => _coordenates;
+  List<dynamic> get coordenates => _coordenates;
   bool get viewed => _viewed;
 
   set content(String newName) {
@@ -31,7 +31,7 @@ class CommentModel {
     }
   }
 
-  set coordenates(List<double> newCoordenates) {
+  set coordenates(List<dynamic> newCoordenates) {
     if (newCoordenates.isNotEmpty) {
       _coordenates = newCoordenates;
     }

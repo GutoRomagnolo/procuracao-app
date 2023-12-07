@@ -6,14 +6,14 @@ import 'package:procuracaoapp/model/comment_model.dart';
 
 class CommentBloc extends Bloc<CommentEvent, CommentState> {
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
-  String commentId;
-  String postId = "h3LXsjiptMugmfpWnib6";
+  List<CommentModel> comments = [];
+  String postId = "tMCwpW0Dver8prsR1vFu";
 
-  CommentBloc({required this.commentId}) : super(WithoutComments()) {
+  CommentBloc() : super(WithoutComments()) {
     on<CreateComment>(
-      (event, emit) {
+      (event, emit) async {
         try {
-          firestore
+          await firestore
               .collection('users')
               .doc(AuthBloc.uid)
               .collection('posts')
@@ -35,19 +35,25 @@ class CommentBloc extends Bloc<CommentEvent, CommentState> {
     );
 
     on<RetrieveComment>(
-      (event, emit) {
+      (event, emit) async {
         try {
-          firestore
-              .collection('users')
-              .doc(AuthBloc.uid)
+          QuerySnapshot querySnapshot = await firestore
               .collection('posts')
               .doc(postId)
               .collection('comments')
               .get();
+
+          for (var doc in querySnapshot.docs) {
+            Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+            CommentModel comment = CommentModel.fromMap(data);
+            comments.add(comment);
+          }
+
+          emit(ObtainedComments(comments: comments));
         } catch (e) {
           emit(ErrorComments(
-              message:
-                  'Não foi possível obter os contários, tente novamente.'));
+            message: 'Não foi possível obter os comentários, tente novamente.',
+          ));
         }
       },
     );
@@ -125,7 +131,11 @@ class CreateComment extends CommentEvent {
   CreateComment({required this.comment});
 }
 
-class RetrieveComment extends CommentEvent {}
+class RetrieveComment extends CommentEvent {
+  String postId;
+
+  RetrieveComment({required this.postId});
+}
 
 class RetrieveOneComment extends CommentEvent {
   String commentId;
@@ -151,9 +161,9 @@ abstract class CommentState {}
 class WithoutComments extends CommentState {}
 
 class ObtainedComments extends CommentState {
-  CommentModel comment;
+  List<CommentModel> comments;
 
-  ObtainedComments({required this.comment});
+  ObtainedComments({required this.comments});
 }
 
 class ErrorComments extends CommentState {

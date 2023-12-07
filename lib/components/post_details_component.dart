@@ -17,59 +17,66 @@ class PostDetailsScreen extends StatelessWidget {
         title: const Text('Detalhes do post'),
         backgroundColor: Theme.of(context).primaryColor,
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            // Parte superior com imagem, texto e descrição centralizados
-            Padding(
-              padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0.0),
-              child: Card(
-                elevation: 5.0,
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(8.0),
-                        child: Image.network(
-                          postModel.path,
-                          width: 200.0,
-                          height: 200.0,
-                          fit: BoxFit.cover,
-                        ),
+      body: BlocBuilder<CommentBloc, CommentState>(
+        builder: (context, state) {
+          return SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0.0),
+                  child: Card(
+                    elevation: 5.0,
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(8.0),
+                            child: Image.network(
+                              postModel.path,
+                              width: 200.0,
+                              height: 200.0,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          const SizedBox(height: 8.0),
+                          Text(
+                            postModel.name,
+                            style: const TextStyle(
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                          const SizedBox(height: 8.0),
+                          Text(
+                            postModel.description,
+                            textAlign: TextAlign.center,
+                          ),
+                        ],
                       ),
-                      const SizedBox(height: 8.0),
-                      Text(
-                        postModel.name,
-                        style: const TextStyle(
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                      const SizedBox(height: 8.0),
-                      Text(
-                        postModel.description,
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
+                    ),
                   ),
                 ),
-              ),
+                const SizedBox(height: 8.0),
+                _buildCommentsSection(context, state),
+                const SizedBox(height: 8.0),
+              ],
             ),
-            const SizedBox(height: 8.0),
-            _buildCommentsSection(context),
-            const SizedBox(height: 8.0),
-            // _buildCommentInput(),
-          ],
-        ),
+          );
+        },
       ),
     );
   }
 
-  Widget _buildCommentsSection(BuildContext context) {
+  Widget _buildCommentsSection(BuildContext context, CommentState state) {
+    List<CommentModel> comments = [];
+    if (state is ObtainedComments) {
+      comments = state.comments;
+    }
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Card(
@@ -84,7 +91,7 @@ class PostDetailsScreen extends StatelessWidget {
                 style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 8.0),
-              const Text('Comentário existente aqui...'),
+              for (var comment in comments) Text(comment.content),
               _buildNewComment(context),
             ],
           ),
