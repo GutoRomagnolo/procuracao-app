@@ -2,6 +2,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:procuracaoapp/bloc/post_bloc.dart';
 import 'package:procuracaoapp/components/file_picker.dart';
 import 'package:procuracaoapp/model/post_model.dart';
@@ -16,6 +17,9 @@ class ViewNewPost extends StatefulWidget {
 
 class _ViewNewPostState extends State<ViewNewPost> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
+  String? _currentAddress;
+  Position? _currentPosition;
 
   String name = "";
   String description = "";
@@ -138,13 +142,23 @@ class _ViewNewPostState extends State<ViewNewPost> {
                     // );
                     if (formKey.currentState!.validate()) {
                       formKey.currentState!.save();
+
+                      List<double> latitudeLongitude = [0.00, 0.00];
+
+                      if (coordenates.shareLocation) {
+                        latitudeLongitude = [
+                          _currentPosition!.latitude,
+                          _currentPosition!.longitude
+                        ];
+                      }
+
                       BlocProvider.of<PostBloc>(context).add(
                         CreatePost(
                           post: PostModel.withData(
                             name: name,
                             description: description,
                             path: '',
-                            coordenates: [0.00, 0.00],
+                            coordenates: latitudeLongitude,
                             fileBytes: fileBytes,
                           ),
                         ),
@@ -166,6 +180,51 @@ class _ViewNewPostState extends State<ViewNewPost> {
           ),
         ),
       ),
+    );
+  }
+
+  Future<bool> _handleLocationPermission() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text(
+              'Location services are disabled. Please enable the services')));
+      return false;
+    }
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Location permissions are denied')));
+        return false;
+      }
+    }
+    if (permission == LocationPermission.deniedForever) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text(
+              'Location permissions are permanently denied, we cannot request permissions.')));
+      return false;
+    }
+    return true;
+  }
+
+  Future<void> _getCurrentPosition() async {
+    final hasPermission = await _handleLocationPermission();
+
+    if (!hasPermission) return;
+    await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high)
+        .then(
+      (Position position) {
+        setState(() => _currentPosition = position);
+      },
+    ).catchError(
+      (e) {
+        debugPrint(e);
+      },
     );
   }
 }
