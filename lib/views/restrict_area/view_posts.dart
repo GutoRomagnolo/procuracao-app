@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:procuracaoapp/components/post_component.dart';
 import 'package:procuracaoapp/mock.dart';
 import 'package:procuracaoapp/model/post_model.dart';
-import './../../components/post_details_components.dart'; // Importe o arquivo que contém os detalhes do post
+import './../../components/post_details_components.dart';
 
 class ViewPosts extends StatelessWidget {
-  const ViewPosts({super.key});
+  const ViewPosts({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
