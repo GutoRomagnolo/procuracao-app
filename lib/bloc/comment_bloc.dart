@@ -7,7 +7,8 @@ class CommentBloc extends Bloc<CommentEvent, CommentState> {
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
   String commentId;
 
-  CommentBloc({required this.commentId}) : super(WithoutComments()) {
+  CommentBloc({required this.commentId})
+      : super(WithoutComments()) {
     on<CreateComment>(
       (event, emit) {
         try {

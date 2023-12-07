@@ -48,7 +48,7 @@ class _ViewFeedState extends State<ViewFeed> {
           ),
           floatingActionButton: FloatingActionButton.extended(
             backgroundColor: Colors.green,
-            foregroundColor: Colors.black,
+            foregroundColor: Colors.white,
             onPressed: () {
               Navigator.pushNamed(context, '/new-post');
             },
