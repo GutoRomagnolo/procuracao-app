@@ -136,17 +136,21 @@ class _ViewNewPostState extends State<ViewNewPost> {
                     //     content: Text('Postagem cadastrada com sucesso!'),
                     //   ),
                     // );
-                    BlocProvider.of<PostBloc>(context).add(
-                      CreatePost(
-                        post: PostModel.withData(
-                          name: name,
-                          description: description,
-                          path: fileBytes,
-                          coordenates: coordenates,
+                    if (formKey.currentState!.validate()) {
+                      formKey.currentState!.save();
+                      BlocProvider.of<PostBloc>(context).add(
+                        CreatePost(
+                          post: PostModel.withData(
+                            name: name,
+                            description: description,
+                            path: '',
+                            coordenates: [0.00, 0.00],
+                            fileBytes: fileBytes,
+                          ),
                         ),
-                      ),
-                    );
-                    Navigator.pop(context);
+                      );
+                      Navigator.pop(context);
+                    }
                   },
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(

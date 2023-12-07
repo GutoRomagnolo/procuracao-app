@@ -11,7 +11,7 @@ class StorageServer {
 
   UploadTask? insertImage(String uid, String postId, Uint8List fileBytes) {
     try {
-      var ref = postImage.child(uid).child(postId);
+      var ref = postImage.child(uid).child("$postId.jpg");
       return ref.putData(fileBytes);
     } on FirebaseException {
       return null;
@@ -19,6 +19,6 @@ class StorageServer {
   }
 
   deleteImage(String uid, String postId) {
-    postImage.child(uid).child(postId).delete();
+    postImage.child(uid).child("$postId.jpg").delete();
   }
 }

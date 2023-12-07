@@ -1,16 +1,50 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:procuracaoapp/bloc/auth_bloc.dart';
 import 'package:procuracaoapp/model/post_model.dart';
+import 'package:procuracaoapp/provider/firebase_storage.dart';
 
 class PostBloc extends Bloc<PostEvent, PostState> {
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   PostBloc() : super(WithoutPosts()) {
     on<CreatePost>(
-      (event, emit) {
+      (event, emit) async {
         try {
-          emit(ObtainedPosts(post: event.post));
+          DocumentReference reference = await firestore
+              .collection('users')
+              .doc(AuthBloc.uid)
+              .collection('posts')
+              .add(
+            {
+              'name': event.post.name,
+              'description': event.post.description,
+              'path': event.post.path,
+              'coordenates': event.post.coordenates,
+            },
+          );
+
+          if (event.post.fileBytes != null) {
+            UploadTask? task = StorageServer.helper
+                .insertImage(AuthBloc.uid, reference.id, event.post.fileBytes!);
+            var snapshot = await task!.whenComplete(() {});
+            event.post.path = await snapshot.ref.getDownloadURL();
+
+            await firestore
+                .collection('users')
+                .doc(AuthBloc.uid)
+                .collection('posts')
+                .doc(reference.id)
+                .update(
+              {
+                'name': event.post.name,
+                'description': event.post.description,
+                'path': event.post.path,
+                'coordenates': event.post.coordenates,
+              },
+            );
+          }
         } catch (e) {
           emit(ErrorPosts(
               message:

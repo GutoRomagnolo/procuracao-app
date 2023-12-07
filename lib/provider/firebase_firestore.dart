@@ -26,10 +26,14 @@ class FirestoreDatabase {
     if (post.fileBytes != null) {
       UploadTask? task = StorageServer.helper
           .insertImage(AuthBloc.uid, reference.id, post.fileBytes!);
-      var snapshot = await task.whenComplete(() {});
+      var snapshot = await task!.whenComplete(() {});
       post.path = await snapshot.ref.getDownloadURL();
 
-      await usersCollection.doc(AuthBloc.uid).collection('posts').add(
+      await usersCollection
+          .doc(AuthBloc.uid)
+          .collection('posts')
+          .doc(reference.id)
+          .update(
         {
           'name': post.name,
           'description': post.description,
