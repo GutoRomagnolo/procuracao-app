@@ -20,6 +20,7 @@ class ViewPosts extends StatelessWidget {
           child: ListView.builder(
             itemCount: state.result.length,
             itemBuilder: (context, index) {
+              print(state.result[index]);
               return InkWell(
                 onTap: () {
                   _openPostDetails(context, state.result[index]);
