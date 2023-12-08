@@ -3,12 +3,29 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:procuracaoapp/model/comment_model.dart';
 import 'package:procuracaoapp/model/post_model.dart';
 import 'package:procuracaoapp/bloc/comment_bloc.dart';
+import 'package:procuracaoapp/bloc/auth_bloc.dart';
 
-class PostDetailsScreen extends StatelessWidget {
+class PostDetailsScreen extends StatefulWidget {
   final PostModel postModel;
-  final TextEditingController commentController = TextEditingController();
 
   PostDetailsScreen({Key? key, required this.postModel}) : super(key: key);
+
+  @override
+  _PostDetailsScreenState createState() => _PostDetailsScreenState();
+}
+
+class _PostDetailsScreenState extends State<PostDetailsScreen> {
+  final TextEditingController commentController = TextEditingController();
+  List<CommentModel> comments = [];
+  CommentModel? newComment;
+
+  @override
+  void initState() {
+    super.initState();
+    // Carregar os comentários ao iniciar a tela
+    BlocProvider.of<CommentBloc>(context)
+        .add(RetrieveComment(postId: 'tMCwpW0Dver8prsR1vFu'));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +52,7 @@ class PostDetailsScreen extends StatelessWidget {
                           ClipRRect(
                             borderRadius: BorderRadius.circular(8.0),
                             child: Image.network(
-                              postModel.path,
+                              widget.postModel.path,
                               width: 200.0,
                               height: 200.0,
                               fit: BoxFit.cover,
@@ -43,7 +60,7 @@ class PostDetailsScreen extends StatelessWidget {
                           ),
                           const SizedBox(height: 8.0),
                           Text(
-                            postModel.name,
+                            widget.postModel.name,
                             style: const TextStyle(
                               fontSize: 18.0,
                               fontWeight: FontWeight.bold,
@@ -52,7 +69,7 @@ class PostDetailsScreen extends StatelessWidget {
                           ),
                           const SizedBox(height: 8.0),
                           Text(
-                            postModel.description,
+                            widget.postModel.description,
                             textAlign: TextAlign.center,
                           ),
                         ],
@@ -72,7 +89,6 @@ class PostDetailsScreen extends StatelessWidget {
   }
 
   Widget _buildCommentsSection(BuildContext context, CommentState state) {
-    List<CommentModel> comments = [];
     if (state is ObtainedComments) {
       comments = state.comments;
     }
@@ -91,7 +107,11 @@ class PostDetailsScreen extends StatelessWidget {
                 style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 8.0),
-              for (var comment in comments) Text(comment.content),
+              for (var comment in comments) CommentCard(comment: comment),
+
+              // Adicione o novo comentário à lista (se existir)
+              if (newComment != null) CommentCard(comment: newComment!),
+
               _buildNewComment(context),
             ],
           ),
@@ -119,12 +139,19 @@ class PostDetailsScreen extends StatelessWidget {
                 String content = commentController.text;
 
                 if (content.isNotEmpty) {
-                  BlocProvider.of<CommentBloc>(context).add(
-                    CreateComment(
-                      comment: CommentModel.withData(
-                          content: content, coordenates: [], viewed: false),
-                    ),
+                  CommentModel comment = CommentModel.withData(
+                    content: content,
+                    coordenates: [],
+                    viewed: false,
                   );
+
+                  // Adiciona o novo comentário ao início da lista geral de comentários
+                  setState(() {
+                    newComment = comment;
+                    comments.insert(0, comment);
+                  });
+
+                  BlocProvider.of<CommentBloc>(context).add(CreateComment(comment: comment));
 
                   commentController.clear();
                 }
@@ -135,6 +162,36 @@ class PostDetailsScreen extends StatelessWidget {
           ],
         ),
       ],
+    );
+  }
+}
+
+class CommentCard extends StatelessWidget {
+  final CommentModel comment;
+
+  CommentCard({required this.comment});
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 3.0,
+      margin: const EdgeInsets.symmetric(vertical: 8.0),
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            const Text(
+              'Usuário',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 8.0),
+            Text(comment.content),
+          ],
+        ),
+      ),
     );
   }
 }

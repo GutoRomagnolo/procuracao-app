@@ -38,6 +38,8 @@ class CommentBloc extends Bloc<CommentEvent, CommentState> {
       (event, emit) async {
         try {
           QuerySnapshot querySnapshot = await firestore
+              .collection('users')
+              .doc(AuthBloc.uid)
               .collection('posts')
               .doc(postId)
               .collection('comments')
