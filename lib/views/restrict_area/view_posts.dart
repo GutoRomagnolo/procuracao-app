@@ -6,21 +6,25 @@ import 'package:procuracaoapp/model/post_model.dart';
 import 'package:procuracaoapp/components/post_details_component.dart';
 import 'package:procuracaoapp/bloc/comment_bloc.dart';
 
-class ViewPosts extends StatelessWidget {
+class ViewPosts extends StatefulWidget {
   const ViewPosts({Key? key}) : super(key: key);
 
   @override
+  State<ViewPosts> createState() => _ViewPostsState();
+}
+
+class _ViewPostsState extends State<ViewPosts> {
+  @override
   Widget build(BuildContext context) {
+    BlocProvider.of<PostBloc>(context).add(RetrievePost());
     return BlocBuilder<PostBloc, PostState>(
       builder: (BuildContext context, PostState state) {
-        BlocProvider.of<PostBloc>(context).add(RetrievePost());
         return Container(
           color: const Color.fromRGBO(240, 241, 223, 1),
           padding: const EdgeInsets.all(20.0),
           child: ListView.builder(
             itemCount: state.result.length,
             itemBuilder: (context, index) {
-              print(state.result[index]);
               return InkWell(
                 onTap: () {
                   _openPostDetails(context, state.result[index]);

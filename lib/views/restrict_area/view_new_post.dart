@@ -112,22 +112,6 @@ class _ViewNewPostState extends State<ViewNewPost> {
                 ],
               ),
               const SizedBox(height: 20),
-              Row(
-                children: [
-                  Switch(
-                    value: coordenates.shareLocation,
-                    onChanged: (bool? inValue) {
-                      if (inValue != null) {
-                        setState(() {
-                          coordenates.shareLocation = inValue;
-                        });
-                      }
-                    },
-                  ),
-                  const Text('Compartilhar localização'),
-                ],
-              ),
-              const SizedBox(height: 20),
               SizedBox(
                 width: MediaQuery.of(context).size.width,
                 height: 40,
@@ -143,7 +127,7 @@ class _ViewNewPostState extends State<ViewNewPost> {
                     if (formKey.currentState!.validate()) {
                       formKey.currentState!.save();
 
-                      List<double> latitudeLongitude = [0.00, 0.00];
+                      List<dynamic> latitudeLongitude = [0.00, 0.00];
 
                       if (coordenates.shareLocation) {
                         latitudeLongitude = [

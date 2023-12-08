@@ -4,7 +4,7 @@ class PostModel {
   String _name = "";
   String _description = "";
   String _path = "";
-  List<double> _coordenates = [];
+  List<dynamic> _coordenates = [];
   Uint8List? _fileBytes;
 
   PostModel() {
@@ -33,7 +33,7 @@ class PostModel {
   String get name => _name;
   String get description => _description;
   String get path => _path;
-  List<double> get coordenates => _coordenates;
+  List<dynamic> get coordenates => _coordenates;
   Uint8List? get fileBytes => _fileBytes;
 
   set name(String newName) {
@@ -54,7 +54,7 @@ class PostModel {
     }
   }
 
-  set coordenates(List<double> newCoordenates) {
+  set coordenates(List<dynamic> newCoordenates) {
     if (newCoordenates.isNotEmpty) {
       _coordenates = newCoordenates;
     }

@@ -42,7 +42,6 @@ class _ViewFeedState extends State<ViewFeed> {
             index: _selectedBottomTabIndex,
             children: const [
               ViewPosts(),
-              ViewPosts(),
               ViewNotifications(),
             ],
           ),
@@ -60,10 +59,6 @@ class _ViewFeedState extends State<ViewFeed> {
               BottomNavigationBarItem(
                 icon: Icon(Icons.feed),
                 label: 'Feed',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.my_library_add),
-                label: 'Minhas postagens',
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.notifications),
