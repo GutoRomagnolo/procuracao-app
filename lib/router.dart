@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:procuracaoapp/bloc/auth_bloc.dart';
+import 'package:procuracaoapp/bloc/comment_bloc.dart';
 import 'package:procuracaoapp/bloc/post_bloc.dart';
 import 'package:procuracaoapp/views/restrict_area/view_new_post.dart';
 import 'package:procuracaoapp/views/normal_area/view_introduce.dart';
@@ -11,6 +12,7 @@ import 'package:procuracaoapp/wrapper.dart';
 class AppRouter {
   final AuthBloc _authBloc = AuthBloc();
   final PostBloc _postBloc = PostBloc();
+  final CommentBloc _commentBloc = CommentBloc();
   Route onGenerateRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
       case '/':
@@ -19,7 +21,10 @@ class AppRouter {
             value: _authBloc,
             child: BlocProvider.value(
               value: _postBloc,
-              child: const Wrapper(),
+              child: BlocProvider.value(
+                value: _commentBloc,
+                child: const Wrapper(),
+              ),
             ),
           ),
         );
@@ -42,8 +47,11 @@ class AppRouter {
       case '/new-post':
         return MaterialPageRoute(
           builder: (_) => BlocProvider.value(
-            value: _postBloc,
-            child: const ViewNewPost(),
+            value: _authBloc,
+            child: BlocProvider.value(
+              value: _postBloc,
+              child: const ViewNewPost(),
+            ),
           ),
         );
 
